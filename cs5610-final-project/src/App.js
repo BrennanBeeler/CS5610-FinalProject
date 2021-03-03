@@ -5,11 +5,9 @@ import Profile from "./components/profile/profile";
 import Search from "./components/search/search";
 import Details from "./components/details/details";
 import Login from "./components/login/login";
-import applicationReducer from "./reducers/application-reducer";
-import {createStore} from "redux";
 import {Provider} from "react-redux"
+import store from "./store/store.js"
 
-const store = createStore(applicationReducer)
 
 //TODO figure out if app is okay as class
 function App() {

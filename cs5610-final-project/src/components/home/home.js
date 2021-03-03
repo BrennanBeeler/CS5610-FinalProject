@@ -1,24 +1,16 @@
 import React from "react"
 import {connect} from "react-redux";
-import LoginLogoutBtn from "../logout/login-logout-btn"
+import TopBar from "../top-bar/top-bar";
 
 export class Home extends React.Component {
-
     render() {
         return(
             <div>
-                <h1>Home</h1>
+                <TopBar/>
 
-                <h1>
-                    Value: {this.props.loggedIn.toString()}
-                </h1>
+                {/*{console.log(this.props.profileData)}*/}
 
-                {
-                    console.log(this.props.loggedIn)
-                }
-
-
-                <LoginLogoutBtn/>
+                <h1>Quote of the Day</h1>
             </div>
         )
     }

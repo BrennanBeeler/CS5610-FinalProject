@@ -1,5 +1,8 @@
 const initialState = {
-    loggedIn: false
+    loggedIn: false,
+    profileData: {
+        userName: "DONT-DISPLAY"
+    }
 }
 
 const applicationReducer = (state = initialState, action) => {
@@ -12,7 +15,10 @@ const applicationReducer = (state = initialState, action) => {
         case "LOG_IN":
             return {
                 ...state,
-                loggedIn: true
+                loggedIn: true,
+                profileData: {
+                    userName: "testUserName"
+                }
             }
         default:
             return state
