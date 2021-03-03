@@ -1,33 +1,31 @@
 import React from "react"
-import {Provider} from "react-redux";
-import applicationReducer from "../../reducers/application-reducer";
-import {createStore} from "redux";
+import {connect} from "react-redux";
 import LoginLogoutBtn from "../logout/login-logout-btn"
-import Test from "../test"
 
-const store = createStore(applicationReducer)
+export class Home extends React.Component {
 
-export default class Home extends React.Component {
     render() {
         return(
-            <Provider store={store}>
-                <div>
-                    <h1>Home</h1>
+            <div>
+                <h1>Home</h1>
 
-                    <h1>
-                        {store.getState().loggedIn.toString()}
-                    </h1>
+                <h1>
+                    Value: {this.props.loggedIn.toString()}
+                </h1>
 
-                    <Test/>
-
-                    {
-                        console.log(store.getState())
-                    }
+                {
+                    console.log(this.props.loggedIn)
+                }
 
 
-                    <LoginLogoutBtn/>
-                </div>
-            </Provider>
+                <LoginLogoutBtn/>
+            </div>
         )
     }
 }
+
+const stpm = (state) => ({
+    loggedIn: state.loggedIn
+})
+
+export default connect(stpm)(Home)

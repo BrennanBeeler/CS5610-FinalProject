@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 
-const LoginLogoutBtn = ({loggedIn=false, logOut, logIn}) =>
+const LoginLogoutBtn = ({loggedIn, logOut, logIn}) =>
         <div>
             {
                 !loggedIn &&

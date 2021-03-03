@@ -5,38 +5,42 @@ import Profile from "./components/profile/profile";
 import Search from "./components/search/search";
 import Details from "./components/details/details";
 import Login from "./components/login/login";
+import applicationReducer from "./reducers/application-reducer";
+import {createStore} from "redux";
+import {Provider} from "react-redux"
 
+const store = createStore(applicationReducer)
 
 //TODO figure out if app is okay as class
 function App() {
     return (
-        <BrowserRouter>
-            <div className="container-fluid">
-                <Route path={["/", "/home"]} exact={true}>
-                    <Home/>
-                </Route>
+        <Provider store={store}>
+            <BrowserRouter>
+                <div className="container-fluid">
+                    <Route path={["/", "/home"]} exact={true}>
+                        <Home/>
+                    </Route>
 
-                <Route path="/profile">
-                    <Profile/>
-                </Route>
+                    <Route path="/profile">
+                        <Profile/>
+                    </Route>
 
-                <Route path="/login">
-                    <Login/>
-                </Route>
+                    <Route path="/login">
+                        <Login/>
+                    </Route>
 
-                <Route path="/search">
-                    <Search/>
-                </Route>
+                    <Route path="/search">
+                        <Search/>
+                    </Route>
 
-                <Route path="/details">
-                    <Details/>
-                </Route>
+                    <Route path="/details">
+                        <Details/>
+                    </Route>
 
-                {/*TODO determine if we want a privacy policy page*/}
-
-
-            </div>
-        </BrowserRouter>
+                    {/*TODO determine if we want a privacy policy page*/}
+                </div>
+            </BrowserRouter>
+        </Provider>
     );
 }
 
