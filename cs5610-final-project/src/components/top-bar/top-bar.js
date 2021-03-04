@@ -1,15 +1,17 @@
 import React from "react"
 import {connect} from "react-redux";
-import LoginLogoutBtn from "../top-bar/login-logout-btn"
+import {Link} from "react-router-dom";
 
 export class TopBar extends React.Component {
     render() {
         return(
             <div className="row border-bottom">
                 <div className="col-2">
-                    <h4>
-                        QOTD
-                    </h4>
+                    <Link to="/home">
+                        <h4>
+                            QOTD
+                        </h4>
+                    </Link>
                 </div>
 
                 <div className="col-6">
@@ -26,18 +28,27 @@ export class TopBar extends React.Component {
                     }
 
                     {
+                        // TODO: decide if its okay to have log in button show on log in page- simple solution is put top bar on each page
                         !this.props.loggedIn &&
                         <>
-                            <LoginLogoutBtn/>
+                            <Link to="/login" className="btn btn-primary">
+                                Log In
+                            </Link>
                         </>
                     }
                 </div>
 
-                <div className="col-2">
-                    <button className="btn btn-secondary float-right">
-                        Sign Up
-                    </button>
-                </div>
+                {
+                    !this.props.loggedIn &&
+                    <div className="col-2">
+                        <Link to={"/register"} className="btn btn-secondary float-right">
+                            Sign Up
+                        </Link>
+                    </div>
+                }
+
+
+
             </div>
         )
     }

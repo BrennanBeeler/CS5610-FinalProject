@@ -2,6 +2,7 @@ const initialState = {
     loggedIn: false,
     profileData: {
         userName: "DONT-DISPLAY"
+    //   TODO: remember if user wants to remembered? how does that work- cookie?
     }
 }
 

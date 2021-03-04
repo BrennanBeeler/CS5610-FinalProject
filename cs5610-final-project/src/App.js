@@ -7,6 +7,8 @@ import Details from "./components/details/details";
 import Login from "./components/login/login";
 import {Provider} from "react-redux"
 import store from "./store/store.js"
+import TopBar from "./components/top-bar/top-bar";
+import Register from "./components/register/register";
 
 
 //TODO figure out if app is okay as class
@@ -15,6 +17,7 @@ function App() {
         <Provider store={store}>
             <BrowserRouter>
                 <div className="container-fluid">
+                    <TopBar/>
                     <Route path={["/", "/home"]} exact={true}>
                         <Home/>
                     </Route>
@@ -33,6 +36,10 @@ function App() {
 
                     <Route path="/details">
                         <Details/>
+                    </Route>
+
+                    <Route path="/register">
+                        <Register/>
                     </Route>
 
                     {/*TODO determine if we want a privacy policy page*/}
