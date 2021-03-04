@@ -6,32 +6,38 @@ export class TopBar extends React.Component {
     render() {
         return(
             <div className="row border-bottom">
-                <div className="col-1">
-                    QOTD
+                <div className="col-2">
+                    <h4>
+                        QOTD
+                    </h4>
                 </div>
 
-                <div className="col-7">
+                <div className="col-6">
                     Search
-                    <input/>
+                    <input className="form-group"/>
                 </div>
 
-                {
-                    this.props.loggedIn &&
+                <div className="col-2s">
+                    {
+                        this.props.loggedIn &&
                         <>
-                            {console.log(this.props.profileData)}
+                            {this.props.profileData.userName}
                         </>
-                }
+                    }
 
-                <div className="col-2">
-                    <LoginLogoutBtn/>
+                    {
+                        !this.props.loggedIn &&
+                        <>
+                            <LoginLogoutBtn/>
+                        </>
+                    }
                 </div>
 
                 <div className="col-2">
-                    <button>
+                    <button className="btn btn-secondary float-right">
                         Sign Up
                     </button>
                 </div>
-
             </div>
         )
     }
