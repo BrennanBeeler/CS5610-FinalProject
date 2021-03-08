@@ -1,7 +1,9 @@
 import React from "react"
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
+import {Home} from "../home/home";
 
-export default class Login extends React.Component {
+class Login extends React.Component {
     render() {
         return(
             <div className="container text-center">
@@ -33,13 +35,14 @@ export default class Login extends React.Component {
 
 
                     <div>
-                        <Link to="/login" className="btn btn-primary btn-block">
+                        <Link to="/home" className="btn btn-primary btn-block">
                             Log In
                         </Link>
                     </div>
 
                     <div className="form-check">
                         <div className="float-left">
+                            {/*TODO: determine how to do this*/}
                             <input className="form-check-input " type="checkbox" value="" id="flexCheckDefault"/>
                             <label className="form-check-label " htmlFor="flexCheckDefault">
                                 Remember me
@@ -58,3 +61,9 @@ export default class Login extends React.Component {
         )
     }
 }
+
+const stpm = (state) => ({
+    loggedIn: state.loggedIn
+})
+
+export default connect(stpm)(Login)
