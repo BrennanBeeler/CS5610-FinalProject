@@ -18,6 +18,8 @@ const applicationReducer = (state = initialState, action) => {
                 ...state,
                 loggedIn: true,
                 profileData: {
+                    // TODO: figure out actual log in procedure
+                    // gonna need to implement database to store user credentials
                     userName: "testUserName"
                 }
             }
