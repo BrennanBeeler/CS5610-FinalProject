@@ -15,16 +15,18 @@ export class TopBar extends React.Component {
                 </div>
 
                 <div className="col-6">
-                    Search
-                    <input className="form-group"/>
+                    <Link to={"/search"}>
+                        Search
+                    </Link>
                 </div>
 
                 <div className="col-2s">
                     {
+                        // TODO: make this button link to profile
                         this.props.loggedIn &&
-                        <>
+                        <button>
                             {this.props.profileData.userName}
-                        </>
+                        </button>
                     }
 
                     {
@@ -46,9 +48,6 @@ export class TopBar extends React.Component {
                         </Link>
                     </div>
                 }
-
-
-
             </div>
         )
     }
