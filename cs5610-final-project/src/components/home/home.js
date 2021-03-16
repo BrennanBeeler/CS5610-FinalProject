@@ -29,6 +29,7 @@ export class Home extends React.Component {
                 <h1 className="text-center">Quote of the Day</h1>
 
                 {/*TODO: figure out how to get image to look nice behind text https://stackoverflow.com/questions/32594944/how-to-pass-backgroundurl-dynamically-using-javascript-to-css*/}
+                {/*TODO: can also try out /quote/image api*/}
                 <blockquote className="text-center blockquote" style={{
                     backgroundImage: `url(${this.state.quoteOfTheDay.background})`,
                     height: "500px",

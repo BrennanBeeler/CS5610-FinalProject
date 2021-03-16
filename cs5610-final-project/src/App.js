@@ -9,6 +9,7 @@ import {Provider} from "react-redux"
 import store from "./store/store.js"
 import TopBar from "./components/top-bar/top-bar";
 import Register from "./components/register/register";
+import SearchResults from "./components/search-results/search-results";
 
 
 //TODO figure out if app is okay as class
@@ -18,6 +19,7 @@ function App() {
             <BrowserRouter>
                 <div className="container-fluid">
                     <TopBar/>
+
                     <Route path={["/", "/home"]} exact={true}>
                         <Home/>
                     </Route>
@@ -30,7 +32,7 @@ function App() {
                         <Login/>
                     </Route>
 
-                    <Route path="/search">
+                    <Route path="/search" exact={true}>
                         <Search/>
                     </Route>
 
@@ -40,6 +42,10 @@ function App() {
 
                     <Route path="/register">
                         <Register/>
+                    </Route>
+
+                    <Route path="/search/:searchTerm">
+                        <SearchResults/>
                     </Route>
 
                     {/*TODO determine if we want a privacy policy page*/}

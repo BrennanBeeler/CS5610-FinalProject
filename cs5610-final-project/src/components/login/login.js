@@ -10,6 +10,7 @@ const Login = (
     const history = useHistory();
 
     const validateCredentials = () => {
+        //TODO: switch to hooks
         if (document.getElementById("usernameFld").value === "test" &&
             document.getElementById("passwordFld").value === "password") {
             logIn()
