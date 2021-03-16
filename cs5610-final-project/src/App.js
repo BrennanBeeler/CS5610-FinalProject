@@ -17,12 +17,8 @@ function App() {
         <Provider store={store}>
             <BrowserRouter>
                 <div className="container-fluid">
-<<<<<<< HEAD
                     <TopBar />
-=======
-                    <TopBar/>
 
->>>>>>> main
                     <Route path={["/", "/home"]} exact={true}>
                         <Home />
                     </Route>
@@ -38,13 +34,8 @@ function App() {
                         <Login />
                     </Route>
 
-<<<<<<< HEAD
                     <Route path="/search">
                         <Search />
-=======
-                    <Route path="/search" exact={true}>
-                        <Search/>
->>>>>>> main
                     </Route>
 
                     <Route path="/details">
@@ -56,7 +47,7 @@ function App() {
                     </Route>
 
                     <Route path="/search/:searchTerm">
-                        <SearchResults/>
+                        <SearchResults />
                     </Route>
 
                     {/*TODO determine if we want a privacy policy page*/}
