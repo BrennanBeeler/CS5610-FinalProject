@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 export default class Register extends React.Component {
     render() {
         return(
+            //TODO: all values need to be validated and actually do something
             <div className="container">
                 <h1>Sign Up</h1>
                 <div className="form-group row">

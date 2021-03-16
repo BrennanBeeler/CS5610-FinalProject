@@ -2,18 +2,40 @@ import React from "react"
 import {connect} from "react-redux";
 import CategoryCard from "../card/category-card";
 import CreatorIcon from "../creator-icon/creator-icon-";
+import quotesService from "../../services/quotes-service"
 
 export class Home extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            quoteOfTheDay : {}
+        }
+    }
+
+    componentDidMount() {
+        // TODO: Can move this into a reducer, but doesn't seem important since it isn't being passed at all
+        quotesService.getQuoteOfDay().then(response =>
+            this.setState((prevState) =>
+                ({...prevState,
+                    quoteOfTheDay : response.contents.quotes[0]
+                })
+            )
+        )
+    }
+
     render() {
         return(
             <div>
                 <h1 className="text-center">Quote of the Day</h1>
 
-                <blockquote className="text-center blockquote">
-                    {/*TODO: need to populate this area with quote from api*/}
-                    “To be successful you have to be selfish, or else you never achieve.
-                    And once you get to your highest level, then you have to be unselfish.
-                    Stay reachable. Stay in touch. Don’t isolate.” – Michael Jordan
+                {/*TODO: figure out how to get image to look nice behind text https://stackoverflow.com/questions/32594944/how-to-pass-backgroundurl-dynamically-using-javascript-to-css*/}
+                {/*TODO: can also try out /quote/image api*/}
+                <blockquote className="text-center blockquote" style={{
+                    backgroundImage: `url(${this.state.quoteOfTheDay.background})`,
+                    height: "500px",
+                    backgroundRepeat: "no-repeat"
+                }} >
+                    {`${this.state.quoteOfTheDay.quote} - ${this.state.quoteOfTheDay.author}`}
                 </blockquote>
 
                 <br/>
