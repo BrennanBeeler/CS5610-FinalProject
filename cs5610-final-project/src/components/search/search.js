@@ -15,8 +15,6 @@ const Search = () => {
         <div className="container">
             <br/>
             <br/>
-            <br/>
-            <br/>
             <label htmlFor="searchBar">
                 <h1>Search QOTD</h1>
             </label>

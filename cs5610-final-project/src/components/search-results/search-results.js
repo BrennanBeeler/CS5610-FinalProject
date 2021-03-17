@@ -1,33 +1,61 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import CreatorIcon from "../creator-icon/creator-icon-";
 import CategoryCard from "../card/category-card";
+import quotesService from "../../services/quotes-service"
 
 const SearchResults = () => {
 
     const {searchTerm} = useParams();
+    const [keywordResults, setKeywordResults] = useState([]);
+    const [authorResults, setAuthorResults] = useState([]);
+    const [categoryResults, setCategoryResults] = useState([]);
+
+    useEffect( () => {
+        quotesService.searchByAuthor(searchTerm).then((results) => {
+            console.log(results)
+            setAuthorResults(results)
+        })
+        // quotesService.searchByKeyword(searchTerm).then(results =>
+        //     setKeywordResults(results.contents.quotes)
+        // )
+        // quotesService.searchByCategory(searchTerm).then(results =>
+        //     setKeywordResults(results.contents.quotes)
+        // )
+    }, [searchTerm])
 
     return(
         <div className="container">
-            <h2>
-                Search results for: {searchTerm}
-            </h2>
-
-            <br/>
-            <br/>
             <br/>
 
+            <h1 className="row border-bottom">
+                Results
+            </h1>
 
             <h3>
                 Quotes
             </h3>
 
-            <br/>
+            {/*TODO: update based on lecture*/}
+            <ul>
+                {authorResults.map(result =>
+                    <li key={result.id}>
+                        <blockquote>
+                            {result.quote} - {result.author}
+                        </blockquote>
+                    </li>
+                )}
+            </ul>
 
-            {/*TODO: going to need to use /quote/search with searchTerm as author and category and maybe tags*/}
-            quotes - populated by author/category/tags?
-
-            <br/>
+            <ul>
+                {keywordResults.map(result =>
+                    <li key={result.id}>
+                        <blockquote>
+                            {result.quote} - {result.author}
+                        </blockquote>
+                    </li>
+                )}
+            </ul>
 
             <h3>
                 Categories
