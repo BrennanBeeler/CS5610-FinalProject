@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Route } from "react-router-dom";
 import Home from "./components/home/home";
-import ProfileEditor from "./components/edit-profile/edit-profile";
+import ProfileEditor from "./components/profile/profile";
 import Search from "./components/search/search";
 import Details from "./components/details/details";
 import Login from "./components/login/login";
@@ -17,17 +17,14 @@ function App() {
         <Provider store={store}>
             <BrowserRouter>
                 <div className="container-fluid">
-                    <TopBar />
+                    <TopBar/>
 
                     <Route path={["/", "/home"]} exact={true}>
-                        <Home />
+                        <Home/>
                     </Route>
 
-                    <Route
-                        path={["/edit/profile", "/edit/profile/:id"]}
-                        exact={true}
-                    >
-                        <ProfileEditor />
+                    <Route path={["/profile", "/profile/:id"]} exact={true}>
+                        <ProfileEditor/>
                     </Route>
 
                     <Route path="/login">
@@ -35,19 +32,19 @@ function App() {
                     </Route>
 
                     <Route path="/search">
-                        <Search />
+                        <Search/>
                     </Route>
 
                     <Route path="/details">
-                        <Details />
+                        <Details/>
                     </Route>
 
                     <Route path="/register">
-                        <Register />
+                        <Register/>
                     </Route>
 
                     <Route path="/search/:searchTerm">
-                        <SearchResults />
+                        <SearchResults/>
                     </Route>
 
                     {/*TODO determine if we want a privacy policy page*/}
