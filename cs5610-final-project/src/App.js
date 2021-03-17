@@ -1,16 +1,15 @@
-import './App.css';
-import {BrowserRouter, Route} from "react-router-dom";
+import "./App.css";
+import { BrowserRouter, Route } from "react-router-dom";
 import Home from "./components/home/home";
-import Profile from "./components/profile/profile";
+import ProfileEditor from "./components/edit-profile/edit-profile";
 import Search from "./components/search/search";
 import Details from "./components/details/details";
 import Login from "./components/login/login";
-import {Provider} from "react-redux"
-import store from "./store/store.js"
+import { Provider } from "react-redux";
+import store from "./store/store.js";
 import TopBar from "./components/top-bar/top-bar";
 import Register from "./components/register/register";
 import SearchResults from "./components/search-results/search-results";
-
 
 //TODO figure out if app is okay as class
 function App() {
@@ -18,34 +17,37 @@ function App() {
         <Provider store={store}>
             <BrowserRouter>
                 <div className="container-fluid">
-                    <TopBar/>
+                    <TopBar />
 
                     <Route path={["/", "/home"]} exact={true}>
-                        <Home/>
+                        <Home />
                     </Route>
 
-                    <Route path="/profile">
-                        <Profile/>
+                    <Route
+                        path={["/edit/profile", "/edit/profile/:id"]}
+                        exact={true}
+                    >
+                        <ProfileEditor />
                     </Route>
 
                     <Route path="/login">
-                        <Login/>
+                        <Login />
                     </Route>
 
-                    <Route path="/search" exact={true}>
-                        <Search/>
+                    <Route path="/search">
+                        <Search />
                     </Route>
 
                     <Route path="/details">
-                        <Details/>
+                        <Details />
                     </Route>
 
                     <Route path="/register">
-                        <Register/>
+                        <Register />
                     </Route>
 
                     <Route path="/search/:searchTerm">
-                        <SearchResults/>
+                        <SearchResults />
                     </Route>
 
                     {/*TODO determine if we want a privacy policy page*/}
