@@ -25,7 +25,7 @@ const searchByCategory = () =>
         .then(response => response.json())
 
 const searchByKeyword = (keyword) =>
-    fetch(`${QUOTES_URL}quote/search.json?keyword=${keyword}&limit=3&api_key=${API_KEY}`)
+    fetch(`${QUOTES_URL}quote/search.json?query=${keyword}&limit=3&api_key=${API_KEY}`)
         .then(response => response.json())
 
 const api = {
