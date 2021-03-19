@@ -1,6 +1,8 @@
 # CS5610-FinalProject
 
 Google Doc: https://docs.google.com/document/d/2tnghah5k46J4_jsd3H5WoA4wCK-YBisBMIpl3COniOo/edit?usp=sharing
+Server repo: https://github.com/jondenman/cs5610-finalproject-server-java
+
 ## Problem
 People need inspiring or amusing quotes sent to them
 ## Users
