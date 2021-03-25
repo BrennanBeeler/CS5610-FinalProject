@@ -3,6 +3,7 @@ import {useParams} from "react-router-dom";
 import CreatorIcon from "../creator-icon/creator-icon-";
 import CategoryCard from "../card/category-card";
 import quotesService from "../../services/quotes-service"
+import QuoteResult from "./quote-result";
 
 const SearchResults = () => {
 
@@ -13,15 +14,14 @@ const SearchResults = () => {
 
     useEffect( () => {
         quotesService.searchByAuthor(searchTerm).then((results) => {
-            console.log(results)
             setAuthorResults(results)
         })
-        // quotesService.searchByKeyword(searchTerm).then(results =>
-        //     setKeywordResults(results.contents.quotes)
-        // )
-        // quotesService.searchByCategory(searchTerm).then(results =>
-        //     setKeywordResults(results.contents.quotes)
-        // )
+        quotesService.searchByKeyword(searchTerm).then((results) => {
+                setKeywordResults(results)
+        })
+        quotesService.searchByCategory(searchTerm).then((results) => {
+                setCategoryResults(results)
+        })
     }, [searchTerm])
 
     return(
@@ -29,31 +29,50 @@ const SearchResults = () => {
             <br/>
 
             <h1 className="row border-bottom">
-                Results
+                Results for: {searchTerm}
             </h1>
 
             <h3>
                 Quotes
             </h3>
 
-            {/*TODO: update based on lecture*/}
+            {/*TODO: figure out why this isn't working*/}
+            {
+                (authorResults.length === 0) &&
+                <h5>
+                    By Author:
+                </h5>
+            }
+
             <ul>
                 {authorResults.map(result =>
-                    <li key={result.id}>
-                        <blockquote>
-                            {result.quote} - {result.author}
-                        </blockquote>
-                    </li>
+                    <QuoteResult result={result} key={result.id}/>
                 )}
             </ul>
 
+            {
+                keywordResults !== [] &&
+                <h5>
+                    By Keyword:
+                </h5>
+            }
+
             <ul>
                 {keywordResults.map(result =>
-                    <li key={result.id}>
-                        <blockquote>
-                            {result.quote} - {result.author}
-                        </blockquote>
-                    </li>
+                    <QuoteResult result={result} key={result.id}/>
+                )}
+            </ul>
+
+            {
+                categoryResults !== [] &&
+                <h5>
+                    By Category:
+                </h5>
+            }
+
+            <ul>
+                {categoryResults.map(result =>
+                    <QuoteResult result={result} key={result.id}/>
                 )}
             </ul>
 

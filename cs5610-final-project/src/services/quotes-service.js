@@ -16,17 +16,39 @@ const searchByAuthor = (author) =>
             }
         })
 
-const searchByQuoteId = () =>
-    fetch(`${QUOTES_URL}/qod.json?api_key=${API_KEY}`)
-        .then(response => response.json())
+//TODO: implement
+const searchByQuoteId = (quoteId) =>
+    fetch(`${QUOTES_URL}quote.json?id=${quoteId}&limit=1&api_key=${API_KEY}`)
+        .then((response) => {
+            if(!response.ok) {
+                return {};
+            }
+            else {
+                return response.json().then(results => results.contents)
+            }
+        })
 
-const searchByCategory = () =>
-    fetch(`${QUOTES_URL}/qod.json?api_key=${API_KEY}`)
-        .then(response => response.json())
+const searchByCategory = (category) =>
+    fetch(`${QUOTES_URL}quote/search.json?category=${category}&limit=3&api_key=${API_KEY}`)
+        .then((response) => {
+            if(!response.ok) {
+                return [];
+            }
+            else {
+                return response.json().then(results => results.contents.quotes)
+            }
+        })
 
 const searchByKeyword = (keyword) =>
     fetch(`${QUOTES_URL}quote/search.json?query=${keyword}&limit=3&api_key=${API_KEY}`)
-        .then(response => response.json())
+        .then((response) => {
+            if(!response.ok) {
+                return [];
+            }
+            else {
+                return response.json().then(results => results.contents.quotes)
+            }
+        })
 
 const api = {
     getQuoteOfDay : getQuoteOfDay,

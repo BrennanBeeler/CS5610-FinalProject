@@ -1,11 +1,20 @@
-import React from "react"
+import React from "react";
+import {useParams} from "react-router-dom";
+import QuoteDetails from "./quote-details";
 
-export default class Details extends React.Component {
-    render() {
-        return(
-            <div>
-                Details
-            </div>
-        )
-    }
+const Details = () => {
+    const {quoteId} = useParams();
+
+    return(
+        <div>
+            {
+                (quoteId !== "undefined" && typeof quoteId !== "undefined") &&
+                    <div>
+                        <QuoteDetails quoteId={quoteId}/>
+                    </div>
+            }
+        </div>
+    )
 }
+
+export default Details;

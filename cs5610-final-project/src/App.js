@@ -31,11 +31,11 @@ function App() {
                         <Login />
                     </Route>
 
-                    <Route path="/search">
+                    <Route path="/search" exact={true}>
                         <Search/>
                     </Route>
 
-                    <Route path="/details">
+                    <Route path={["/details", "/details/quote/:quoteId"]} exact={true}>
                         <Details/>
                     </Route>
 
