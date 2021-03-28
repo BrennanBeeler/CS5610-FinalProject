@@ -9,9 +9,14 @@ const QuoteResult = ({result}) => {
                     <p>
                         {result.quote}
                     </p>
-                    <footer className="blockquote-footer">
-                        {result.author}
-                    </footer>
+                    {
+                        result.author !== null &&
+                        <>
+                            <footer className="blockquote-footer">
+                                {result.author}
+                            </footer>
+                        </>
+                    }
                 </blockquote>
             </div>
         </Link>

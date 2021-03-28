@@ -23,9 +23,14 @@ const QuoteDetails = ({quoteId}) => {
                     <p>
                         {quote.quote}
                     </p>
-                    <footer className="blockquote-footer">
-                        {quote.author}
-                    </footer>
+                    {
+                        quote.author !== null &&
+                        <>
+                            <footer className="blockquote-footer">
+                                {quote.author}
+                            </footer>
+                        </>
+                    }
                 </blockquote>
 
                 <h3>
@@ -34,11 +39,16 @@ const QuoteDetails = ({quoteId}) => {
 
                 <ul>
                     {
-                        quote.categories.map(result =>
-                            <li>
-                                {result}
-                            </li>
-                        )
+                        !(typeof quote.categories === "undefined") &&
+                        <>
+                            {
+                                quote.categories.map(result =>
+                                    <li>
+                                        {result}
+                                    </li>
+                                )
+                            }
+                        </>
                     }
                 </ul>
             </div>
