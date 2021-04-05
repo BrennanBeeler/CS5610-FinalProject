@@ -1,6 +1,10 @@
 import React from "react";
 
-export default class MyInfo extends React.Component {
+// ToDo: Implement ability to use the information of the logged in user
+// ToDo: Take the user information and render this page with that logged information
+// ToDo: Create Method to update User Information (state and to server)
+
+class MyInfo extends React.Component {
 	render() {
 		return (
 			<div>
@@ -8,7 +12,7 @@ export default class MyInfo extends React.Component {
 					<input
 						className="form-control"
 						id="UsernameInput"
-						placeholder="Username"
+						placeholder="Yonathan"
 					/>
 				</div>
 				<div className="p-1">
@@ -25,7 +29,10 @@ export default class MyInfo extends React.Component {
 						placeholder="7032000228"
 					/>
 				</div>
+				<button className="btn btn-primary float-right">Update</button>
 			</div>
 		);
 	}
 }
+
+export default MyInfo;
