@@ -16,7 +16,7 @@ function App() {
     return (
         <Provider store={store}>
             <BrowserRouter>
-                <div className="container-fluid">
+                <div className="container-fullwidth">
                     <TopBar/>
 
                     <Route path={["/", "/home"]} exact={true}>

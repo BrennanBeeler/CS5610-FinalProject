@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import CategoryCard from "../card/category-card";
 import CreatorIcon from "../creator-icon/creator-icon-";
 import quotesService from "../../services/quotes-service"
+import "./home.css"
 
 export class Home extends React.Component {
     constructor(props) {
@@ -25,39 +26,40 @@ export class Home extends React.Component {
 
     render() {
         return(
-            <div>
+            <div className="wbdv-padding-sides">
                 <h1 className="text-center">Quote of the Day</h1>
 
-                {/*TODO: figure out how to get image to look nice behind text https://stackoverflow.com/questions/32594944/how-to-pass-backgroundurl-dynamically-using-javascript-to-css*/}
-                {/*TODO: can also try out /quote/image api*/}
+                {/*TODO: ask prof how to get into css file*/}
                 <blockquote className="text-center blockquote" style={{
                     backgroundImage: `url(${this.state.quoteOfTheDay.background})`,
                     height: "500px",
-                    backgroundRepeat: "no-repeat"
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition : "center"
                 }} >
-                    {`${this.state.quoteOfTheDay.quote} - ${this.state.quoteOfTheDay.author}`}
+                    <p>
+                        {this.state.quoteOfTheDay.quote}
+                    </p>
+                    <footer className=" ">-{this.state.quoteOfTheDay.author}</footer>
                 </blockquote>
 
                 <br/>
 
-                <div className="row">
-                    {/*TODO: populate with categories, popular for anonymous, liked/followed for logged in*/}
-                    {/*TODO: fix issue on very small screen where one category gets huge*/}
-                    <div className="col col-sm-6 col-md-3">
-                        <CategoryCard/>
-                    </div>
-                    <div className="col col-sm-6 col-md-3">
-                        <CategoryCard/>
-                    </div>
-                    <div className="col col-sm-6 col-md-3">
-                        <CategoryCard/>
-                    </div>
-                    <div className="col col-sm-6 col-md-3">
-                        <CategoryCard/>
-                    </div>
-
-
-                </div>
+                {/*<div className="row">*/}
+                {/*    /!*TODO: populate with categories, popular for anonymous, liked/followed for logged in*!/*/}
+                {/*    /!*TODO: fix issue on very small screen where one category gets huge*!/*/}
+                {/*    <div className="col col-sm-6 col-md-3">*/}
+                {/*        <CategoryCard/>*/}
+                {/*    </div>*/}
+                {/*    <div className="col col-sm-6 col-md-3">*/}
+                {/*        <CategoryCard/>*/}
+                {/*    </div>*/}
+                {/*    <div className="col col-sm-6 col-md-3">*/}
+                {/*        <CategoryCard/>*/}
+                {/*    </div>*/}
+                {/*    <div className="col col-sm-6 col-md-3">*/}
+                {/*        <CategoryCard/>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
 
                 <br/>
 
