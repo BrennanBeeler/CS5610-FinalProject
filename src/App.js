@@ -16,14 +16,18 @@ function App() {
     return (
         <Provider store={store}>
             <BrowserRouter>
-                <div className="container-fullwidth">
+                <div className="container-fullwidth wbdv-full-height wbdv-background-color">
+                    <div className="wbdv-btm-border"/>
+                    <div className="wbdv-left-border"/>
+                    <div className="wbdv-right-border"/>
+
                     <TopBar/>
 
                     <Route path={["/", "/home"]} exact={true}>
                         <Home/>
                     </Route>
 
-                    <Route path={["/profile", "/profile/:id"]} exact={true}>
+                    <Route path={["/profile", "/profile/:profileId"]} exact={true}>
                         <ProfileEditor/>
                     </Route>
 

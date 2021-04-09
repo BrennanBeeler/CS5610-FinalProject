@@ -24,6 +24,37 @@
   color: white;
 }
 
+.wbdv-btm-border {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 5px;
+  bottom: 0;
+  background-color: #d9ebef;
+}
+
+.wbdv-left-border {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background-color: #d9ebef;
+}
+
+.wbdv-right-border {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background-color: #d9ebef;
+}
+
+.wbdv-full-height {
+  height: 100%;
+}
+
 .App-link {
   color: #61dafb;
 }

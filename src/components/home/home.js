@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import CategoryCard from "../card/category-card";
 import CreatorIcon from "../creator-icon/creator-icon-";
 import quotesService from "../../services/quotes-service"
-import "./home.css"
+import "./home.css";
 
 export class Home extends React.Component {
     constructor(props) {
@@ -29,37 +29,26 @@ export class Home extends React.Component {
             <div className="wbdv-padding-sides">
                 <h1 className="text-center">Quote of the Day</h1>
 
-                {/*TODO: ask prof how to get into css file*/}
-                <blockquote className="text-center blockquote" style={{
-                    backgroundImage: `url(${this.state.quoteOfTheDay.background})`,
-                    height: "500px",
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition : "center"
-                }} >
-                    <p>
-                        {this.state.quoteOfTheDay.quote}
-                    </p>
-                    <footer className=" ">-{this.state.quoteOfTheDay.author}</footer>
-                </blockquote>
+                <div style={{left: "12.5%", width: "75%", position: "relative"}}>
+                    {/*TODO: ask prof how to get into css file*/}
+                    <blockquote className="text-center blockquote" style={{
+                        backgroundImage: `url(${this.state.quoteOfTheDay.background})`,
+                        height: "517px",
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition : "center",
+                        backgroundSize : "cover",
+                        border : "10px solid #99b9bf"
+                    }} >
+                        <p className="wbdv-home-quote">
+                            <br/>
+                            {this.state.quoteOfTheDay.quote}
+                        </p>
+                        <footer>-{this.state.quoteOfTheDay.author}</footer>
+                    </blockquote>
+                </div>
+
 
                 <br/>
-
-                {/*<div className="row">*/}
-                {/*    /!*TODO: populate with categories, popular for anonymous, liked/followed for logged in*!/*/}
-                {/*    /!*TODO: fix issue on very small screen where one category gets huge*!/*/}
-                {/*    <div className="col col-sm-6 col-md-3">*/}
-                {/*        <CategoryCard/>*/}
-                {/*    </div>*/}
-                {/*    <div className="col col-sm-6 col-md-3">*/}
-                {/*        <CategoryCard/>*/}
-                {/*    </div>*/}
-                {/*    <div className="col col-sm-6 col-md-3">*/}
-                {/*        <CategoryCard/>*/}
-                {/*    </div>*/}
-                {/*    <div className="col col-sm-6 col-md-3">*/}
-                {/*        <CategoryCard/>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
 
                 <br/>
 

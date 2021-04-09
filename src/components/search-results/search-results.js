@@ -107,7 +107,7 @@ const SearchResults = () => {
             </h3>
 
             {/*TODO: populate these appropriately and make them dynamically spaced- always 6*/}
-            <div className="row">
+            <div className="row" style={{paddingBottom: "50px"}}>
                 <div className="col col-sm-2 col-xs-4">
                     <CreatorIcon/>
                 </div>

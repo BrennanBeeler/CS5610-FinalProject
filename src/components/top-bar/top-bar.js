@@ -26,7 +26,7 @@ export class TopBar extends React.Component {
                         // TODO: make this button link to profile
                         this.props.loggedIn &&
                         <Link to="/profile" className="btn btn-info">
-                            {this.props.profileData.userName}
+                            {this.props.profileData.username}
                         </Link>
                     }
 

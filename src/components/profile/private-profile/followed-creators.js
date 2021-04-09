@@ -1,5 +1,5 @@
 import React from "react";
-import CreatorIcon from "../creator-icon/creator-icon-";
+import CreatorIcon from "../../creator-icon/creator-icon-";
 
 export default class FollowedCreators extends React.Component {
 	render() {
