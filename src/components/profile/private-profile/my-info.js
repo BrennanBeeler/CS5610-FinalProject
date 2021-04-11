@@ -1,22 +1,42 @@
 import React, {useState} from "react";
+import {connect} from "react-redux";
+import profileActions from "../../../actions/profile-actions";
 
 // ToDo: Take the user information and render this page with that logged information
 // ToDo: Create Method to update User Information (state and to server)
 
-const MyInfo = ({profileData}) => {
+const MyInfo = ({profileData, updateMyDetails}) => {
 	const [username, setUsername] = useState(profileData.username);
 	const [password, setPassword] = useState(profileData.password);
 	const [email, setEmail] = useState(profileData.email);
 	const [phoneNum, setPhoneNum] = useState(profileData.phoneNum);
 
+	//TODO: validate details before sending out
+	const handleUpdate = () => {
+		updateMyDetails(email, username, password, phoneNum)
+	}
 
 	return (
 		<div>
-			<div>
-				<img src="https://via.placeholder.com/150" alt="placeholder" className="wbdv-circle"/>
+			<div className="row">
+				<div className="col-3"/>
 
-				<label htmlFor="exampleFormControlFile1">Change Profile Picture</label>
-				<input type="file" className="form-control-file" id="exampleFormControlFile1"/>
+				{/*TODO: set up profile pictures - only for premium user?*/}
+				<div className="col-3">
+					Change Profile Picture
+					<img src="https://via.placeholder.com/150" alt="placeholder" className="wbdv-circle"/>
+
+				</div>
+
+				<div>
+					<br/>
+					<br/>
+					<br/>
+					<input type="file" className="form-control-file" id="exampleFormControlFile1"/>
+				</div>
+				<br/>
+
+
 			</div>
 
 			<div className="mt-3">
@@ -36,7 +56,7 @@ const MyInfo = ({profileData}) => {
 						id="PasswordInput"
 						placeholder="Password"
 						value={password}
-						onChange={event => setPassword(event.target.value)}/>
+						onChange={event => setPassword(event.target.value)} type="password"/>
 				</div>
 				<div className="form-group">
 					<label className="form-check-label" htmlFor="EmailInput">Email</label>
@@ -60,10 +80,18 @@ const MyInfo = ({profileData}) => {
 				</div>
 			</div>
 
-
-			<button className="btn btn-primary float-right">Update</button>
+			<button className="btn btn-primary float-right" onClick={handleUpdate}>Update</button>
 		</div>
 	)
 }
 
-export default MyInfo;
+const stpm = (state) => ({
+	profileData : state.profileData
+})
+
+const dtpm = (dispatch) => ({
+	updateMyDetails: (email, username, password, phoneNum) =>
+		profileActions.updateMyDetails(dispatch, email, username, password, phoneNum)
+})
+
+export default connect(stpm, dtpm)(MyInfo);

@@ -1,9 +1,12 @@
+import {UPDATE_MY_DETAILS, UPDATE_BIO} from "../actions/profile-actions";
+
 const initialState = {
     loggedIn: false,
     profileData: {
         id: 1,
         username: "testUsername",
         password: "password",
+        //TODO: determine if we need first/last name
         firstName: "testFirstName",
         lastName: "testLastName",
         email: "testEmail@email.com",
@@ -31,6 +34,25 @@ const applicationReducer = (state = initialState, action) => {
                 //     // gonna need to implement database to store user credentials
                 //     username: "testUserName"
                 // }
+            }
+        case UPDATE_MY_DETAILS:
+            return {
+                ...state,
+                profileData: {
+                    ...state.profileData,
+                    email: action.email,
+                    username: action.username,
+                    password: action.password,
+                    phoneNum: action.phoneNum
+                }
+            }
+        case UPDATE_BIO:
+            return {
+                ...state,
+                profileData: {
+                    ...state.profileData,
+                    bio: action.bio
+                }
             }
         default:
             return state

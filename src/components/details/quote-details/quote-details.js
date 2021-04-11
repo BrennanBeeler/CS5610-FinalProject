@@ -1,9 +1,16 @@
 import React, {useEffect, useState} from "react";
-import quotesService from "../../services/quotes-service";
+import quotesService from "../../../services/quotes-service";
+import {useParams} from "react-router-dom";
+import profileActions from "../../../actions/profile-actions";
+import {connect} from "react-redux";
+import AddQuoteToCollection from "./add-quote-to-collection"
 
-const QuoteDetails = ({quoteId}) => {
+const QuoteDetails = ({profileData}) => {
 
+    const {quoteId} = useParams();
     const [quote, setQuote] = useState({})
+    const [showModal, setShowModal] = useState(false)
+
 
     useEffect(() => {
         quotesService.searchByQuoteId(quoteId).then((results) => {
@@ -11,12 +18,26 @@ const QuoteDetails = ({quoteId}) => {
         })
     }, [quoteId])
 
+    const handleClose = () => {
+        setShowModal(false)
+    }
 
     return(
-        <div>
-            <h1>
-                Quote Details
-            </h1>
+        <div className="container">
+            <div className="row">
+                <h1>
+                    Quote Details
+                </h1>
+
+                {
+                    profileData.isPremium &&
+                    <button className="btn btn-primary" onClick={() => setShowModal(true)}>
+                        Add to Collection
+                    </button>
+                }
+            </div>
+
+            {/*<AddQuoteToCollection show={showModal} handleClose={() => handleClose()}/>*/}
 
             <div className="card-body">
                 <blockquote>
@@ -53,10 +74,16 @@ const QuoteDetails = ({quoteId}) => {
                 </ul>
             </div>
         </div>
-
-
     )
 
 }
 
-export default QuoteDetails;
+const stpm = (state) => ({
+    profileData : state.profileData
+})
+
+const dtpm = (dispatch) => ({
+    updateBio: (bio) => profileActions.updateBio(dispatch, bio)
+})
+
+export default connect(stpm, dtpm)(QuoteDetails);

@@ -1,24 +1,24 @@
-import React from "react";
+import React, {useState} from "react";
 import {Link, useHistory} from "react-router-dom";
 import {connect} from "react-redux";
+import logActions from "../../actions/log-actions";
 
 const Login = (
     {
         logIn
     }) => {
 
+    const [password, setPassword] = useState();
+    const [username, setUsername] = useState();
+
     const history = useHistory();
 
     const validateCredentials = () => {
-        //TODO: switch to hooks
-        if (document.getElementById("usernameFld").value === "test" &&
-            document.getElementById("passwordFld").value === "password") {
-            logIn()
+        //TODO: validate log in credentials against database
+        if (username === "test" &&
+            password === "password") {
+            logIn(username, password)
             history.push("/home")
-        }
-        else if(document.getElementById("usernameFld").value === "" &&
-            document.getElementById("passwordFld").value === "") {
-            alert("Enter valid username and password")
         }
         else {
             alert("Incorrect login credentials")
@@ -28,6 +28,7 @@ const Login = (
     return(
         <div className="container text-center">
             <div className="container">
+                <br/>
                 <h1>Welcome Back</h1>
 
                 <div className="form-group row">
@@ -38,6 +39,8 @@ const Login = (
                         <input className="form-control wbdv-field wbdv-username"
                                id="usernameFld"
                                placeholder="Username"
+                               value={username}
+                               onChange={event => setUsername(event.target.value)}
                         />
                     </div>
                 </div>
@@ -49,7 +52,10 @@ const Login = (
                     <div className="col-sm-10">
                         <input className="form-control"
                                id="passwordFld"
-                               placeholder="Password"/>
+                               placeholder="Password"
+                               type="password"
+                               value={password}
+                               onChange={event => setPassword(event.target.value)}/>
                     </div>
                 </div>
 
@@ -80,9 +86,7 @@ const Login = (
 
 const dtpm = (dispatch) => ({
 //    TODO: need to turn into actual login procedure
-    logIn: () => dispatch({
-                 type : "LOG_IN"
-             })
+    logIn: (username, password) => logActions.logIn(dispatch, username, password)
 })
 
 export default connect(null, dtpm)(Login)

@@ -60,8 +60,4 @@ const stpm = (state) => ({
     loggedIn: state.loggedIn
 })
 
-const dtpm = (state) => ({
-
-})
-
-export default connect(stpm, dtpm)(PrivateProfile);
+export default connect(stpm)(PrivateProfile);
