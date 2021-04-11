@@ -3,7 +3,7 @@ import quotesService from "../../../services/quotes-service";
 import {useParams} from "react-router-dom";
 import profileActions from "../../../actions/profile-actions";
 import {connect} from "react-redux";
-import AddQuoteToCollection from "./add-quote-to-collection"
+import AddQuoteToCollection from "./add-quote-to-collection";
 
 const QuoteDetails = ({profileData}) => {
 
@@ -24,8 +24,10 @@ const QuoteDetails = ({profileData}) => {
 
     return(
         <div className="container">
+            <br/>
+
             <div className="row">
-                <h1>
+                <h1 className="col-10">
                     Quote Details
                 </h1>
 
@@ -37,7 +39,7 @@ const QuoteDetails = ({profileData}) => {
                 }
             </div>
 
-            {/*<AddQuoteToCollection show={showModal} handleClose={() => handleClose()}/>*/}
+            <AddQuoteToCollection key={quoteId} show={showModal} handleClose={() => handleClose()}/>
 
             <div className="card-body">
                 <blockquote>
@@ -71,6 +73,26 @@ const QuoteDetails = ({profileData}) => {
                             }
                         </>
                     }
+                </ul>
+
+                <h3>
+                    Posts
+                </h3>
+
+            {/*    TODO: get quote posts for this quote- these link out to profile of user who made them?*/}
+                <ul>
+                    <li>
+                        Quote post 1
+                    </li>
+                    <li>
+                        Quote post 2
+                    </li>
+                    <li>
+                        Quote post 3
+                    </li>
+                    <li>
+                        Quote post 4
+                    </li>
                 </ul>
             </div>
         </div>

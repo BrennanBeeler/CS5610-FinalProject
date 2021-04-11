@@ -1,4 +1,5 @@
 import {UPDATE_MY_DETAILS, UPDATE_BIO} from "../actions/profile-actions";
+import {GET_MY_COLLECTIONS} from "../actions/collection-actions";
 
 const initialState = {
     loggedIn: false,
@@ -13,9 +14,9 @@ const initialState = {
         isPremium: true,
         bio: "sample bio about test user",
         phoneNum : "9999999999"
-
     //   TODO: remember if user wants to remembered? how does that work- cookie?
-    }
+    },
+    collectionOptions: []
 }
 
 const applicationReducer = (state = initialState, action) => {
@@ -53,6 +54,11 @@ const applicationReducer = (state = initialState, action) => {
                     ...state.profileData,
                     bio: action.bio
                 }
+            }
+        case GET_MY_COLLECTIONS:
+            return {
+                ...state,
+                collectionOptions: action.collectionOptions
             }
         default:
             return state
