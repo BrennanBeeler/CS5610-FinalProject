@@ -1,5 +1,5 @@
 import {UPDATE_MY_DETAILS, UPDATE_BIO} from "../actions/profile-actions";
-import {GET_MY_COLLECTIONS} from "../actions/collection-actions";
+import {ADD_QUOTE_TO_COLLECTION, GET_MY_COLLECTIONS} from "../actions/collection-actions";
 
 const initialState = {
     loggedIn: false,
@@ -59,6 +59,12 @@ const applicationReducer = (state = initialState, action) => {
             return {
                 ...state,
                 collectionOptions: action.collectionOptions
+            }
+        case ADD_QUOTE_TO_COLLECTION:
+            return {
+                ...state,
+                collectionOptions: state.collectionOptions.map(collection =>
+                    collection.collectionId === action.collection.collectionId ? action.collection : collection)
             }
         default:
             return state

@@ -35,18 +35,23 @@ const getFollowedCollections = (dispatch, userId) => {
     })
 }
 
-const addQuoteToCollection = (dispatch, collectionId) => {
+const addQuoteToCollection = (dispatch, collectionId, quoteId) => {
     //TODO: here we send new quote to db for adding to collection- then send the new collection with changes to
     // reducer
     dispatch({
         type: ADD_QUOTE_TO_COLLECTION,
-        collection: {}
+        collection: {
+            collectionId: collectionId,
+            collectionName: "Test Collection 2",
+            quotes : []
+        }
     })
 }
 
 const collectionActions = {
     getFollowedCollections: getFollowedCollections,
-    getMyCollections: getMyCollections
+    getMyCollections: getMyCollections,
+    addQuoteToCollection: addQuoteToCollection
 }
 
 export default collectionActions;
