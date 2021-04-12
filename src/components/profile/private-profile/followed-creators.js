@@ -1,5 +1,5 @@
 import React from "react";
-import CreatorIcon from "../../creator-icon/creator-icon-";
+import CollectionIcon from "../../collection-icon/collection-icon";
 
 export default class FollowedCreators extends React.Component {
 	render() {
@@ -7,22 +7,22 @@ export default class FollowedCreators extends React.Component {
 			<div>
 				<div className="row">
 					<div className="col col-sm-2 col-xs-4">
-						<CreatorIcon />
+						<CollectionIcon />
 					</div>
 					<div className="col col-sm-2 col-xs-4">
-						<CreatorIcon />
+						<CollectionIcon />
 					</div>
 					<div className="col col-sm-2 col-xs-4">
-						<CreatorIcon />
+						<CollectionIcon />
 					</div>
 					<div className="col col-sm-2 col-xs-4">
-						<CreatorIcon />
+						<CollectionIcon />
 					</div>
 					<div className="col col-sm-2 col-xs-4">
-						<CreatorIcon />
+						<CollectionIcon />
 					</div>
 					<div className="col col-sm-2 col-xs-4">
-						<CreatorIcon />
+						<CollectionIcon />
 					</div>
 				</div>
 			</div>

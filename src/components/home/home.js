@@ -1,7 +1,7 @@
 import React from "react"
 import {connect} from "react-redux";
 import CategoryCard from "../card/category-card";
-import CreatorIcon from "../creator-icon/creator-icon-";
+import CollectionIcon from "../collection-icon/collection-icon";
 import quotesService from "../../services/quotes-service"
 import "./home.css";
 
@@ -53,29 +53,18 @@ export class Home extends React.Component {
                 <br/>
 
                 <div className="text-center">
-                    <h4> Creators to follow</h4>
+                    <h4>Popular Collections</h4>
                     <br/>
 
                     {/*TODO: populate these appropriately and make them dynamically spaced- always 6*/}
                     <div className="row">
-                        <div className="col col-sm-2 col-xs-4">
-                            <CreatorIcon/>
-                        </div>
-                        <div className="col col-sm-2 col-xs-4">
-                            <CreatorIcon/>
-                        </div>
-                        <div className="col col-sm-2 col-xs-4">
-                            <CreatorIcon/>
-                        </div>
-                        <div className="col col-sm-2 col-xs-4">
-                            <CreatorIcon/>
-                        </div>
-                        <div className="col col-sm-2 col-xs-4">
-                            <CreatorIcon/>
-                        </div>
-                        <div className="col col-sm-2 col-xs-4">
-                            <CreatorIcon/>
-                        </div>
+                        {
+                            [0,1,2,3,4,5].map(collection =>
+                                <div className="col col-sm-2 col-xs-4">
+                                    <CollectionIcon/>
+                                </div>
+                            )
+                        }
                     </div>
                 </div>
             </div>
