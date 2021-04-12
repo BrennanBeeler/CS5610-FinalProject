@@ -11,17 +11,119 @@ const getMyCollections = (dispatch, userId) => {
                 collectionId: 1,
                 collectionName: "Test Collection 1",
                 //TODO: i guess the quotes array will be populated with the quote ids?
-                quotes : []
+                quotes : [
+                    {
+                        "quote": "Stress is like a pulse, if you have it you are alive.",
+                        "length": "53",
+                        "author": "Steve Maraboli",
+                        "tags": [
+                            "being-alive",
+                            "inspire",
+                            "stress"
+                        ],
+                        "category": "inspire",
+                        "language": "en",
+                        "date": "2021-04-11",
+                        "permalink": "https://theysaidso.com/quote/steve-maraboli-stress-is-like-a-pulse-if-you-have-it-you-are-alive",
+                        "id": "5p6wMGj72uOLUuOZCaX_wQeF",
+                        "background": "https://theysaidso.com/img/qod/qod-inspire.jpg",
+                        "title": "Inspiring Quote of the day"
+                    },
+                    {
+                        "quote": "Stress is like a pulse, if you have it you are alive.",
+                        "length": "53",
+                        "author": "Steve Maraboli",
+                        "tags": [
+                            "being-alive",
+                            "inspire",
+                            "stress"
+                        ],
+                        "category": "inspire",
+                        "language": "en",
+                        "date": "2021-04-11",
+                        "permalink": "https://theysaidso.com/quote/steve-maraboli-stress-is-like-a-pulse-if-you-have-it-you-are-alive",
+                        "id": "5p6wMGj72uOLUuOZCaX_wQeF",
+                        "background": "https://theysaidso.com/img/qod/qod-inspire.jpg",
+                        "title": "Inspiring Quote of the day"
+                    }]
             },
             {
                 collectionId: 2,
                 collectionName: "Test Collection 2",
-                quotes : []
+                quotes : [
+                    {
+                        "quote": "Stress is like a pulse, if you have it you are alive.",
+                        "length": "53",
+                        "author": "Steve Maraboli",
+                        "tags": [
+                            "being-alive",
+                            "inspire",
+                            "stress"
+                        ],
+                        "category": "inspire",
+                        "language": "en",
+                        "date": "2021-04-11",
+                        "permalink": "https://theysaidso.com/quote/steve-maraboli-stress-is-like-a-pulse-if-you-have-it-you-are-alive",
+                        "id": "5p6wMGj72uOLUuOZCaX_wQeF",
+                        "background": "https://theysaidso.com/img/qod/qod-inspire.jpg",
+                        "title": "Inspiring Quote of the day"
+                    },
+                    {
+                        "quote": "Stress is like a pulse, if you have it you are alive.",
+                        "length": "53",
+                        "author": "Steve Maraboli",
+                        "tags": [
+                            "being-alive",
+                            "inspire",
+                            "stress"
+                        ],
+                        "category": "inspire",
+                        "language": "en",
+                        "date": "2021-04-11",
+                        "permalink": "https://theysaidso.com/quote/steve-maraboli-stress-is-like-a-pulse-if-you-have-it-you-are-alive",
+                        "id": "5p6wMGj72uOLUuOZCaX_wQeF",
+                        "background": "https://theysaidso.com/img/qod/qod-inspire.jpg",
+                        "title": "Inspiring Quote of the day"
+                    }]
             },
             {
                 collectionId: 3,
                 collectionName: "Test Collection 3",
-                quotes : []
+                quotes : [
+                    {
+                        "quote": "Stress is like a pulse, if you have it you are alive.",
+                        "length": "53",
+                        "author": "Steve Maraboli",
+                        "tags": [
+                            "being-alive",
+                            "inspire",
+                            "stress"
+                        ],
+                        "category": "inspire",
+                        "language": "en",
+                        "date": "2021-04-11",
+                        "permalink": "https://theysaidso.com/quote/steve-maraboli-stress-is-like-a-pulse-if-you-have-it-you-are-alive",
+                        "id": "5p6wMGj72uOLUuOZCaX_wQeF",
+                        "background": "https://theysaidso.com/img/qod/qod-inspire.jpg",
+                        "title": "Inspiring Quote of the day"
+                    },
+                    {
+                        "quote": "Stress is like a pulse, if you have it you are alive.",
+                        "length": "53",
+                        "author": "Steve Maraboli",
+                        "tags": [
+                            "being-alive",
+                            "inspire",
+                            "stress"
+                        ],
+                        "category": "inspire",
+                        "language": "en",
+                        "date": "2021-04-11",
+                        "permalink": "https://theysaidso.com/quote/steve-maraboli-stress-is-like-a-pulse-if-you-have-it-you-are-alive",
+                        "id": "5p6wMGj72uOLUuOZCaX_wQeF",
+                        "background": "https://theysaidso.com/img/qod/qod-inspire.jpg",
+                        "title": "Inspiring Quote of the day"
+                    }]
             }
         ]
     })

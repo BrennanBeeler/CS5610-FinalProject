@@ -15,7 +15,8 @@ const MyBio = ({profileData, updateBio}) => {
 
 	return (
 		<div>
-			<textarea rows="9" value={bio} className="form-control" onChange={event => setBio(event.target.value)}/>
+			<label htmlFor="myBioFld">My Bio</label>
+			<textarea rows="9" value={bio} className="form-control" onChange={event => setBio(event.target.value)} id="myBioFld"/>
 			<button className="mt-1 btn btn-primary float-right" onClick={handleUpdate}>
 				Update
 			</button>

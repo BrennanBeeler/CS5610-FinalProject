@@ -8,8 +8,8 @@ const Login = (
         logIn
     }) => {
 
-    const [password, setPassword] = useState();
-    const [username, setUsername] = useState();
+    const [password, setPassword] = useState("");
+    const [username, setUsername] = useState("");
 
     const history = useHistory();
 
