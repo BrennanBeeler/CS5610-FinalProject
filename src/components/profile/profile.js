@@ -5,24 +5,17 @@ import "./profile.css";
 import PrivateProfile from "./private-profile/private-profile";
 import PublicProfile from "./public-profile/public-profile";
 
-const Profile = () => {
+const ProfileEditor = () => {
 	const [active, setActive] = useState("MyInfo");
-	const {profileId} = useParams();
+	const { profileId } = useParams();
 
 	return (
 		<div className="container wbdv-profile">
-			{
-				profileId === undefined &&
-					<PrivateProfile/>
-			}
+			{profileId === undefined && <PrivateProfile />}
 
-			{
-				profileId !== undefined &&
-					<PublicProfile id={profileId}/>
-			}
-
+			{profileId !== undefined && <PublicProfile id={profileId} />}
 		</div>
-	)
-}
+	);
+};
 
-export default Profile;
+export default ProfileEditor;
