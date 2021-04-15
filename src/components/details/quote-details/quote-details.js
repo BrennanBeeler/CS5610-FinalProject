@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import quotesService from "../../../services/quotes-service";
+import quotesService from "../../../services/external-quotes-service";
 import {useParams} from "react-router-dom";
 import profileActions from "../../../actions/profile-actions";
 import {connect} from "react-redux";

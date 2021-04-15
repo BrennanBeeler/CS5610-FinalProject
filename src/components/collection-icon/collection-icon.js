@@ -1,14 +1,16 @@
 import React from "react";
-import "./creator-icon.css"
+import "./collection-icon.css"
 
-const CreatorIcon = () => {
+const CollectionIcon = () => {
     return(
         <div>
             <img src="https://via.placeholder.com/100" alt="placeholder" className="wbdv-circle"/>
+            <br/>
+            Collection Name
         </div>
     )
 }
 
-export default CreatorIcon;
+export default CollectionIcon;
 
 

@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-import CreatorIcon from "../creator-icon/creator-icon-";
+import CollectionIcon from "../collection-icon/collection-icon";
 import CategoryCard from "../card/category-card";
-import quotesService from "../../services/quotes-service"
+import quotesService from "../../services/external-quotes-service"
 import QuoteResult from "./quote-result";
 
 const SearchResults = () => {
@@ -109,22 +109,22 @@ const SearchResults = () => {
             {/*TODO: populate these appropriately and make them dynamically spaced- always 6*/}
             <div className="row" style={{paddingBottom: "50px"}}>
                 <div className="col col-sm-2 col-xs-4">
-                    <CreatorIcon/>
+                    <CollectionIcon/>
                 </div>
                 <div className="col col-sm-2 col-xs-4">
-                    <CreatorIcon/>
+                    <CollectionIcon/>
                 </div>
                 <div className="col col-sm-2 col-xs-4">
-                    <CreatorIcon/>
+                    <CollectionIcon/>
                 </div>
                 <div className="col col-sm-2 col-xs-4">
-                    <CreatorIcon/>
+                    <CollectionIcon/>
                 </div>
                 <div className="col col-sm-2 col-xs-4">
-                    <CreatorIcon/>
+                    <CollectionIcon/>
                 </div>
                 <div className="col col-sm-2 col-xs-4">
-                    <CreatorIcon/>
+                    <CollectionIcon/>
                 </div>
             </div>
         </div>

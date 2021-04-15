@@ -1,5 +1,8 @@
+import UserService from "../services/user-service";
+
 export const UPDATE_MY_DETAILS = "UPDATE_MY_DETAILS";
 export const UPDATE_BIO = "UPDATE_BIO";
+
 
 
 
