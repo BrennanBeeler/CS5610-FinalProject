@@ -2,7 +2,7 @@ import React from "react"
 import {connect} from "react-redux";
 import CategoryCard from "../card/category-card";
 import CollectionIcon from "../collection-icon/collection-icon";
-import quotesService from "../../services/quotes-service"
+import quotesService from "../../services/external-quotes-service"
 import "./home.css";
 
 export class Home extends React.Component {

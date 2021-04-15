@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import CollectionIcon from "../collection-icon/collection-icon";
 import CategoryCard from "../card/category-card";
-import quotesService from "../../services/quotes-service"
+import quotesService from "../../services/external-quotes-service"
 import QuoteResult from "./quote-result";
 
 const SearchResults = () => {
