@@ -1,27 +1,22 @@
 import React, {useState} from "react";
-import {Link, useHistory} from "react-router-dom";
 import {connect} from "react-redux";
 import logActions from "../../actions/log-actions";
+import {Redirect} from "react-router";
 
 const Login = (
     {
-        logIn
+        logIn,
+        loggedIn
     }) => {
 
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
 
-    const history = useHistory();
-
-    const validateCredentials = () => {
+    async function validateCredentials () {
         //TODO: validate log in credentials against database
-        if (username === "test" &&
-            password === "password") {
-            logIn(username, password)
-            history.push("/home")
-        }
-        else {
-            alert("Incorrect login credentials")
+
+        if (await logIn(username, password) === false) {
+            alert("Those are invalid credentials, please try again")
         }
     }
 
@@ -65,28 +60,32 @@ const Login = (
                     </button>
                 </div>
 
+                {
+                    loggedIn &&
+                    <Redirect to={"/home"}/>
+                }
+
                 <div className="form-check">
                     <div className="float-left">
                         {/*TODO: determine how to do this*/}
                         <input className="form-check-input " type="checkbox" value="" id="flexCheckDefault"/>
                         <label className="form-check-label " htmlFor="flexCheckDefault">
-                            Remember me
+                            Remember me ?????????
                         </label>
                     </div>
-
-                    {/*TODO: figure out forgot password*/}
-                    <Link className="float-right" to="login">
-                        Forgot Password?
-                    </Link>
                 </div>
             </div>
         </div>
     )
 }
 
-const dtpm = (dispatch) => ({
-//    TODO: need to turn into actual login procedure
-    logIn: (username, password) => logActions.logIn(dispatch, username, password)
+const stpm = (state) => ({
+    loggedIn: state.loggedIn
 })
 
-export default connect(null, dtpm)(Login)
+const dtpm = (dispatch) => ({
+//    TODO: need to turn into actual login procedure
+    logIn: (username, password) => logActions.logIn(dispatch, username, password)(dispatch)
+})
+
+export default connect(stpm, dtpm)(Login)

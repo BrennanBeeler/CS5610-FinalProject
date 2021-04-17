@@ -76,34 +76,10 @@ const SearchResults = () => {
                 )}
             </ul>
 
-            <h3>
-                Categories
-            </h3>
-
-            <br/>
-
-            <div className="row">
-                {/*TODO: populate with categories*/}
-                {/*TODO: fix issue on very small screen where one category gets huge*/}
-                <div className="col col-sm-6 col-md-3">
-                    <CategoryCard/>
-                </div>
-                <div className="col col-sm-6 col-md-3">
-                    <CategoryCard/>
-                </div>
-                <div className="col col-sm-6 col-md-3">
-                    <CategoryCard/>
-                </div>
-                <div className="col col-sm-6 col-md-3">
-                    <CategoryCard/>
-                </div>
-            </div>
-
-
             <br/>
 
             <h3>
-                Creators
+                Collections
             </h3>
 
             {/*TODO: populate these appropriately and make them dynamically spaced- always 6*/}

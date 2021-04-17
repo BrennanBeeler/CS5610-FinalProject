@@ -11,9 +11,10 @@ const initialState = {
         firstName: "testFirstName",
         lastName: "testLastName",
         email: "testEmail@email.com",
-        isPremium: true,
+        premium: true,
         bio: "sample bio about test user",
-        phoneNum : "9999999999"
+        phoneNum : "9999999999",
+        followedCollection: []
     //   TODO: remember if user wants to remembered? how does that work- cookie?
     },
     collectionOptions: []
@@ -29,12 +30,8 @@ const applicationReducer = (state = initialState, action) => {
         case "LOG_IN":
             return {
                 ...state,
-                loggedIn: true
-                // profileData: {
-                //     // TODO: figure out actual log in procedure
-                //     // gonna need to implement database to store user credentials
-                //     username: "testUserName"
-                // }
+                loggedIn: true,
+                profileData: action.profileData
             }
         case UPDATE_MY_DETAILS:
             return {

@@ -5,8 +5,9 @@ import MyCollections from "./my-collections";
 import MyBio from "./my-bio";
 import {connect} from "react-redux";
 import {useHistory} from "react-router-dom";
+import logActions from "../../../actions/log-actions";
 
-const PrivateProfile = ({profileData, loggedIn}) => {
+const PrivateProfile = ({profileData, loggedIn, logOut}) => {
     const [active, setActive] = useState("MyInfo");
 
     const history = useHistory();
@@ -34,7 +35,7 @@ const PrivateProfile = ({profileData, loggedIn}) => {
                     </a>
                 </li>
                 {
-                    profileData.isPremium &&
+                    profileData.premium &&
                     <li className="nav-item">
                         <a className={`nav-link ${active === "MyCollections" ? "active" : ""}`} onClick={() => setActive("MyCollections")}>
                             My Collections
@@ -51,6 +52,16 @@ const PrivateProfile = ({profileData, loggedIn}) => {
                 {active === "MyCollections" && <MyCollections/>}
                 {active === "MyBio" && <MyBio profileData={profileData}/>}
             </div>
+
+
+
+            <div style={{marginTop: "100px"}}>
+                <button className="btn btn-danger btn-block" onClick={logOut}>
+                    Log Out
+                </button>
+            </div>
+
+
         </div>
     )
 }
@@ -60,4 +71,8 @@ const stpm = (state) => ({
     loggedIn: state.loggedIn
 })
 
-export default connect(stpm)(PrivateProfile);
+const dtpm = (dispatch) => ({
+    logOut : () => logActions.logOut(dispatch)
+})
+
+export default connect(stpm, dtpm)(PrivateProfile);

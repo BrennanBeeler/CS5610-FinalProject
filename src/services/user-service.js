@@ -1,10 +1,20 @@
 const USER_URL = "http://localhost:8080/api/users";
 
-//TODO: NEEDS TO BE CREATED
-const LogInUser = (username, password) => {
-    fetch(`${USER_URL}`)
-        .then(response => response.json())
-}
+// Got help with null response from API from https://mcculloughwebservices.com/2016/09/23/handling-a-null-response-from-an-api/
+const LogInUser = (username, password) =>
+    fetch(`${USER_URL}/login`, {
+        method: "POST",
+        body: JSON.stringify({
+            username: username,
+            password: password
+        }),
+        headers : {
+            "content-type" : "application/json"
+        }
+    })
+        .then(response => response.text())
+        .then(text =>text.length ? JSON.parse(text) : {})
+
 
 const GetUser = (user) =>
     fetch(`${USER_URL}/${user.id}`)
