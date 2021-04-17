@@ -3,7 +3,7 @@ import UserService from "../services/user-service";
 export const UPDATE_MY_DETAILS = "UPDATE_MY_DETAILS";
 export const UPDATE_BIO = "UPDATE_BIO";
 
-const updateMyDetails = (dispatch, profileData, email, username, password, phoneNum) => async (dispatch) => {
+const updateMyDetails = (dispatch, profileData, email, username, password, phoneNum, premium) => async (dispatch) => {
     //TODO: add phone num
 
     const res = await UserService.UpdateUser({
@@ -11,7 +11,8 @@ const updateMyDetails = (dispatch, profileData, email, username, password, phone
         email: email,
         username: username,
         password: password,
-        phoneNum: phoneNum
+        phoneNum: phoneNum,
+        premium: premium
     })
 
     if (res === 1) {
@@ -20,7 +21,8 @@ const updateMyDetails = (dispatch, profileData, email, username, password, phone
             email: email,
             username: username,
             password: password,
-            phoneNum: phoneNum
+            phoneNum: phoneNum,
+            premium: premium
         })
 
         return true

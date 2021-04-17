@@ -44,8 +44,8 @@ const GetCollectionForUser = (userId) =>
     fetch(`${USER_URL}/${userId}/collections`)
         .then(response => response.json())
 
-const CreateCollectionForUser = (user, collection) =>
-    fetch(`${USER_URL}/${user.id}/collections`, {
+const CreateCollectionForUser = (userId, collection) =>
+    fetch(`${USER_URL}/${userId}/collections`, {
         method: "POST",
         body: JSON.stringify(collection),
         headers : {

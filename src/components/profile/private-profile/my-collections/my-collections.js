@@ -1,26 +1,30 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import collectionActions from "../../../../actions/collection-actions";
 import {Card, Accordion, Button} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import CollectionQuote from "./collection-quote";
+import CreateCollectionModal from "./create-collection-modal";
 
-const MyCollections = ({getMyCollections, profileData, collectionOptions}) => {
+const MyCollections = ({getMyCollections, profileData, collectionOptions, createCollectionForUser}) => {
+
+	const [showModal, setShowModal] = useState(false)
+
+	const handleClose = () => {
+		setShowModal(false)
+	}
 
 	useEffect(() => {
 		getMyCollections(profileData.id)
 	}, [])
 
-	const handleCollectionCreation = () => {
-	//TODO
-
-	}
-
 	return (
 		<div>
-			<button className="btn btn-success">
+			<button className="btn btn-success" onClick={() => setShowModal(true)}>
 				Create New Collection
 			</button>
+
+			<CreateCollectionModal show={showModal} handleClose={() => handleClose()}/>
 
 			<br/>
 			<br/>
@@ -31,8 +35,6 @@ const MyCollections = ({getMyCollections, profileData, collectionOptions}) => {
 					You haven't created any collections yet. Click "Create New Collection" to try it out!
 				</div>
 			}
-
-			{console.log(collectionOptions)}
 
 			{
 				collectionOptions.map(collection =>
@@ -62,6 +64,13 @@ const MyCollections = ({getMyCollections, profileData, collectionOptions}) => {
 							</Card.Header>
 							<Accordion.Collapse eventKey="0">
 								<Card.Body>
+									{
+										collection.quoteIds.length === 0 &&
+											<div>
+												No quotes added yet!
+											</div>
+									}
+
 									{/*TODO: allow editing of quotes*/}
 									{
 										collection.quoteIds.map(quoteId =>

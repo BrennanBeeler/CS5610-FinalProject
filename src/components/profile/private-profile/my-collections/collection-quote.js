@@ -13,7 +13,7 @@ const CollectionQuote = ({quoteId}) => {
         console.log("test")
 
         //TODO: put in real id
-        quotesService.searchByQuoteId("IzY6YlJCdhJc3IAlWvyHBAeF")
+        quotesService.searchByQuoteId(quoteId)
             .then((results) => setQuote(results))
     }, [quoteId])
 
@@ -28,6 +28,7 @@ const CollectionQuote = ({quoteId}) => {
                             </Link>
                             <br/>
                             <div className="ml-5">
+                                <br/>
                                 - {quote.author}
                             </div>
                         </div>
@@ -52,6 +53,7 @@ const stpm = (state, ownProps) => ({
 
 const dtpm = (dispatch) => ({
 //    TODO: delete quote from collection
+
 
 })
 

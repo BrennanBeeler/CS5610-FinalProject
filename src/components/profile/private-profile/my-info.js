@@ -7,10 +7,11 @@ const MyInfo = ({profileData, updateMyDetails}) => {
 	const [password, setPassword] = useState(profileData.password);
 	const [email, setEmail] = useState(profileData.email);
 	const [phoneNum, setPhoneNum] = useState(profileData.phoneNum);
+	const [premium, setPremium] = useState(profileData.premium);
 
 	//TODO: validate details before sending out
 	async function handleUpdate() {
-		if (await updateMyDetails(profileData, email, username, password, phoneNum) === true) {
+		if (await updateMyDetails(profileData, email, username, password, phoneNum, premium) === true) {
 			alert("Profile successfully updated!")
 		}
 		else {
@@ -80,6 +81,17 @@ const MyInfo = ({profileData, updateMyDetails}) => {
 						value={phoneNum}
 						onChange={event => setPhoneNum(event.target.value)}/>
 				</div>
+
+				<div className="form-group">
+					<label htmlFor="premiumToggle" className="form-check-label">
+						User Type
+					</label>
+					<select className="form-control " id="premiumToggle" value={premium}
+							onChange={event => setPremium(event.target.value)}>
+						<option value={false}>Standard</option>
+						<option value={true}>Premium</option>
+					</select>
+				</div>
 			</div>
 
 			<button className="btn btn-primary float-right" onClick={handleUpdate}>Update</button>
@@ -93,8 +105,8 @@ const stpm = (state) => ({
 
 const dtpm = (dispatch) => ({
 	//TODO: add phone number
-	updateMyDetails: (profileData, email, username, password, phoneNum) =>
-		profileActions.updateMyDetails(dispatch, profileData, email, username, password, phoneNum)(dispatch)
+	updateMyDetails: (profileData, email, username, password, phoneNum, premium) =>
+		profileActions.updateMyDetails(dispatch, profileData, email, username, password, phoneNum, premium)(dispatch)
 })
 
 export default connect(stpm, dtpm)(MyInfo);

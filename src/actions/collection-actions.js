@@ -25,6 +25,7 @@ const getFollowedCollections = (dispatch, userId) => {
 
 const addQuoteToCollection = (dispatch, collection, quoteId) => {
 
+    //TODO: need promise to alert user of success?
     CollectionService.UpdateCollection({
         ...collection,
         quoteIds: [
@@ -33,21 +34,21 @@ const addQuoteToCollection = (dispatch, collection, quoteId) => {
         ]
     }).then(
         response => console.log(response)
-        // dispatch({
-        //     type: ADD_QUOTE_TO_COLLECTION,
-        //     collection: {
-        //         collectionId: collectionId,
-        //         collectionName: "Test Collection 2",
-        //         quotes : []
-        //     }
-        // })
     )
+}
+
+const createCollectionForUser = (dispatch, userId, collection) => {
+    UserService.CreateCollectionForUser(userId, collection)
+        .then(response => {
+            console.log(response)
+        })
 }
 
 const collectionActions = {
     getFollowedCollections: getFollowedCollections,
     getMyCollections: getMyCollections,
-    addQuoteToCollection: addQuoteToCollection
+    addQuoteToCollection: addQuoteToCollection,
+    createCollectionForUser
 }
 
 export default collectionActions;
