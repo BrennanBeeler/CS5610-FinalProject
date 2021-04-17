@@ -2,13 +2,14 @@ import React, {useState} from "react"
 import {Link} from "react-router-dom";
 import logActions from "../../actions/log-actions";
 import {connect} from "react-redux";
+import {Redirect} from "react-router";
 
-const Register = () => {
+const Register = ({signUp, loggedIn}) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
-    const handleSignUp = () => {
+    async function handleSignUp()  {
         if (username === "") {
             alert("Please enter a username")
         }
@@ -24,6 +25,17 @@ const Register = () => {
         //TODO: further validation of all password/username
         else {
         //    TODO: try to create user on database
+            if (signUp({
+                username: username,
+                password: password,
+                isPremium: false
+            }) === true) {
+                console.log("Signed up")
+            }
+            else {
+                alert("That username is already in use. Please try another!")
+            }
+
         }
     }
 
@@ -69,6 +81,11 @@ const Register = () => {
                            onChange={event => setConfirmPassword(event.target.value)}/>
                 </div>
             </div>
+            
+            {
+                loggedIn &&
+                    <Redirect to={"/profile"}/>
+            }
 
             <div className="form-group row">
                 <label className="col-sm-2 col-form-label"/>
@@ -97,7 +114,7 @@ const stpm = (state) => ({
 
 const dtpm = (dispatch) => ({
 //    TODO: need to turn into actual login procedure
-    logIn: (username, password) => logActions.logIn(dispatch, username, password)(dispatch)
+    signUp : (user) => logActions.signUp(dispatch, user)(dispatch)
 })
 
 export default connect(stpm, dtpm)(Register)

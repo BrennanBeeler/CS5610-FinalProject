@@ -25,9 +25,26 @@ const logOut = (dispatch) => {
     })
 }
 
+const signUp = (dispatch, user) => async (dispatch) => {
+    const res = await UserService.RegisterUser(user)
+
+    if (res.id !== 0) {
+        dispatch({
+            type: LOG_IN,
+            profileData: res
+        })
+
+        return true
+    }
+    else {
+        return false
+    }
+}
+
 const logActions = {
     logIn: logIn,
-    logOut: logOut
+    logOut: logOut,
+    signUp
 }
 
 export default logActions;

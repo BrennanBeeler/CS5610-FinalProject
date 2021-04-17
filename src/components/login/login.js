@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {connect} from "react-redux";
 import logActions from "../../actions/log-actions";
 import {Redirect} from "react-router";
+import {Link} from "react-router-dom";
 
 const Login = (
     {
@@ -73,6 +74,10 @@ const Login = (
                             Remember me ?????????
                         </label>
                     </div>
+
+                    <Link to="/register" className="float-right">
+                        Don't have an account?
+                    </Link>
                 </div>
             </div>
         </div>

@@ -25,7 +25,8 @@ const applicationReducer = (state = initialState, action) => {
         case "LOG_OUT":
             return {
                 ...state,
-                loggedIn: false
+                loggedIn: false,
+                profileData: {}
             }
         case "LOG_IN":
             return {

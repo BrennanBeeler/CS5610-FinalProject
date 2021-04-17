@@ -30,8 +30,8 @@ const UpdateUser = (user) =>
     })
         .then(response => response.json())
 
-const CreateUser = (user) =>
-    fetch(`${USER_URL}`, {
+const RegisterUser = (user) =>
+    fetch(`${USER_URL}/register`, {
         method: "POST",
         body: JSON.stringify(user),
         headers : {
@@ -64,7 +64,7 @@ const DeleteUser = (user) =>
 const UserService = {
     LogInUser,
     UpdateUser,
-    CreateUser,
+    RegisterUser,
     DeleteUser,
     GetUser,
     GetCollectionForUser,
