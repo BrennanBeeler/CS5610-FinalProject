@@ -2,7 +2,7 @@ import React from "react"
 import {connect} from "react-redux";
 import CategoryCard from "../card/category-card";
 import CollectionIcon from "../collection-icon/collection-icon";
-import quotesService from "../../services/external-quotes-service"
+import ExternalQuoteService from "../../services/external-quotes-service"
 import "./home.css";
 
 export class Home extends React.Component {
@@ -15,7 +15,7 @@ export class Home extends React.Component {
 
     componentDidMount() {
         // TODO: Can move this into a reducer, but doesn't seem important since it isn't being passed at all
-        quotesService.getQuoteOfDay().then(response =>
+        ExternalQuoteService.getQuoteOfDay().then(response =>
             this.setState((prevState) =>
                 ({...prevState,
                     quoteOfTheDay : response.contents.quotes[0]

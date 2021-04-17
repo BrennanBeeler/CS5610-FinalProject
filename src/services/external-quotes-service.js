@@ -1,6 +1,7 @@
 const QUOTES_URL = 'http://quotes.rest/';
 const API_KEY = "55F_r0Emfg9tbCTqWmzjCgeF";
 
+//TODO: if have time can switch to all categories
 const getQuoteOfDay = () =>
     fetch(`${QUOTES_URL}qod.json?api_key=${API_KEY}`)
         .then(response => response.json())
@@ -50,7 +51,7 @@ const searchByKeyword = (keyword) =>
             }
         })
 
-const api = {
+const ExternalQuoteService = {
     getQuoteOfDay : getQuoteOfDay,
     searchByAuthor : searchByAuthor,
     searchByQuoteId : searchByQuoteId,
@@ -58,4 +59,4 @@ const api = {
     searchByKeyword : searchByKeyword
 }
 
-export default api;
+export default ExternalQuoteService;

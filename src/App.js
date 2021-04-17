@@ -39,7 +39,7 @@ function App() {
                         <Search/>
                     </Route>
 
-                    <Route path={["/details", "/details/quote/:quoteId"]} exact={true}>
+                    <Route path={["/details", "/details/quote/:quoteId", "/details/collection/:collectionId"]} exact={true}>
                         <Details/>
                     </Route>
 

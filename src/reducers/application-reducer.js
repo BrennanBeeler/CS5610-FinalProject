@@ -1,48 +1,36 @@
 import {UPDATE_MY_DETAILS, UPDATE_BIO} from "../actions/profile-actions";
 import {ADD_QUOTE_TO_COLLECTION, GET_MY_COLLECTIONS} from "../actions/collection-actions";
+import {LOG_IN, LOG_OUT} from "../actions/log-actions";
 
 const initialState = {
     loggedIn: false,
-    profileData: {
-        id: 1,
-        username: "testUsername",
-        password: "password",
-        //TODO: determine if we need first/last name
-        firstName: "testFirstName",
-        lastName: "testLastName",
-        email: "testEmail@email.com",
-        premium: true,
-        bio: "sample bio about test user",
-        phoneNum : "9999999999",
-        followedCollection: []
-    //   TODO: remember if user wants to remembered? how does that work- cookie?
-    },
+    profileData: {},
     collectionOptions: []
 }
 
 const applicationReducer = (state = initialState, action) => {
     switch (action.type) {
-        case "LOG_OUT":
+        case LOG_OUT:
             return {
                 ...state,
                 loggedIn: false,
                 profileData: {}
             }
-        case "LOG_IN":
+        case LOG_IN:
             return {
                 ...state,
                 loggedIn: true,
                 profileData: action.profileData
             }
         case UPDATE_MY_DETAILS:
+            //TODO: add phone number
             return {
                 ...state,
                 profileData: {
                     ...state.profileData,
                     email: action.email,
                     username: action.username,
-                    password: action.password,
-                    phoneNum: action.phoneNum
+                    password: action.password
                 }
             }
         case UPDATE_BIO:

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import {Modal, Button, Form} from "react-bootstrap";
 import collectionActions from "../../../actions/collection-actions";
+import {useParams} from "react-router-dom";
 
 const AddQuoteToCollection = (
     {
@@ -9,19 +10,24 @@ const AddQuoteToCollection = (
         handleClose,
         getMyCollections,
         collectionOptions,
-        userId,
-        addQuoteToCollection
+        addQuoteToCollection,
+        loggedIn,
+        profileData
     }) => {
 
-    const [collectionChoice, setCollectionChoice] = useState("");
+    const {quoteId} = useParams();
+
+    const [collectionChoice, setCollectionChoice] = useState(0);
 
     useEffect(() => {
-        getMyCollections(userId)
+        if (loggedIn) {
+            getMyCollections(profileData.id)
+        }
     }, [])
 
     const handleAddToCollection = () => {
-        if(collectionChoice !== "") {
-            addQuoteToCollection(collectionChoice)
+        if(collectionChoice !== 0) {
+            addQuoteToCollection(collectionOptions.find(collection => collection.id === collectionChoice), quoteId)
             handleClose()
         }
     }
@@ -36,8 +42,8 @@ const AddQuoteToCollection = (
                     <Form.Group>
                         <Form.Label>Which collection to add to?</Form.Label>
                         <Form.Control as="select" value={collectionChoice}
-                                      onChange={event => setCollectionChoice(event.target.value)}>
-                            <option value={""}>Select a Collection</option>
+                                      onChange={event => setCollectionChoice(parseInt(event.target.value))}>
+                            <option value={0}>Select a Collection</option>
                             {
                                 collectionOptions.map(collection =>
                                     <option key={collection.collectionId} value={collection.id}>
@@ -65,15 +71,16 @@ const AddQuoteToCollection = (
 const stpm = (state, ownProps) => ({
     show: ownProps.show,
     handleClose: ownProps.handleClose,
-    userId: state.profileData.id,
-    collectionOptions: state.collectionOptions
+    profileData: state.profileData,
+    collectionOptions: state.collectionOptions,
+    loggedIn: state.loggedIn
 })
 
 const dtpm = (dispatch) => ({
     //TODO: when do we get the possible collections?
     getMyCollections: (userId) => collectionActions.getMyCollections(dispatch, userId),
-    addQuoteToCollection : (collectionId, quoteId) =>
-        collectionActions.addQuoteToCollection(dispatch, collectionId, quoteId)
+    addQuoteToCollection : (collection, quoteId) =>
+        collectionActions.addQuoteToCollection(dispatch, collection, quoteId)
 })
 
 export default connect(stpm, dtpm)(AddQuoteToCollection);

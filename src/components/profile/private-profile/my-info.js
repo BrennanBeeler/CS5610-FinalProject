@@ -2,9 +2,6 @@ import React, {useState} from "react";
 import {connect} from "react-redux";
 import profileActions from "../../../actions/profile-actions";
 
-// ToDo: Take the user information and render this page with that logged information
-// ToDo: Create Method to update User Information (state and to server)
-
 const MyInfo = ({profileData, updateMyDetails}) => {
 	const [username, setUsername] = useState(profileData.username);
 	const [password, setPassword] = useState(profileData.password);
@@ -12,8 +9,13 @@ const MyInfo = ({profileData, updateMyDetails}) => {
 	const [phoneNum, setPhoneNum] = useState(profileData.phoneNum);
 
 	//TODO: validate details before sending out
-	const handleUpdate = () => {
-		updateMyDetails(email, username, password, phoneNum)
+	async function handleUpdate() {
+		if (await updateMyDetails(profileData, email, username, password, phoneNum) === true) {
+			alert("Profile successfully updated!")
+		}
+		else {
+			alert("Error updating profile. Please try again.")
+		}
 	}
 
 	return (
@@ -90,8 +92,9 @@ const stpm = (state) => ({
 })
 
 const dtpm = (dispatch) => ({
-	updateMyDetails: (email, username, password, phoneNum) =>
-		profileActions.updateMyDetails(dispatch, email, username, password, phoneNum)
+	//TODO: add phone number
+	updateMyDetails: (profileData, email, username, password, phoneNum) =>
+		profileActions.updateMyDetails(dispatch, profileData, email, username, password, phoneNum)(dispatch)
 })
 
 export default connect(stpm, dtpm)(MyInfo);

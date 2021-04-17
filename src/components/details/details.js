@@ -1,9 +1,10 @@
 import React from "react";
 import {useParams} from "react-router-dom";
 import QuoteDetails from "./quote-details/quote-details";
+import CollectionDetails from "./collection-details/collection-details";
 
 const Details = () => {
-    const {quoteId} = useParams();
+    const {quoteId, collectionId} = useParams();
 
     return(
         <div>
@@ -12,6 +13,13 @@ const Details = () => {
                     <div>
                         <QuoteDetails/>
                     </div>
+            }
+
+            {
+                (collectionId !== "undefined" && typeof collectionId !== "undefined") &&
+                <div>
+                    <CollectionDetails/>
+                </div>
             }
         </div>
     )

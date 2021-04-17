@@ -5,7 +5,7 @@ import profileActions from "../../../actions/profile-actions";
 import {connect} from "react-redux";
 import AddQuoteToCollection from "./add-quote-to-collection";
 
-const QuoteDetails = ({profileData}) => {
+const QuoteDetails = ({profileData, loggedIn}) => {
 
     const {quoteId} = useParams();
     const [quote, setQuote] = useState({})
@@ -32,7 +32,7 @@ const QuoteDetails = ({profileData}) => {
                 </h1>
 
                 {
-                    profileData.isPremium &&
+                    loggedIn &&
                     <button className="btn btn-primary" onClick={() => setShowModal(true)}>
                         Add to Collection
                     </button>
@@ -101,7 +101,8 @@ const QuoteDetails = ({profileData}) => {
 }
 
 const stpm = (state) => ({
-    profileData : state.profileData
+    profileData : state.profileData,
+    loggedIn: state.loggedIn
 })
 
 const dtpm = (dispatch) => ({

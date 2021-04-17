@@ -13,7 +13,7 @@ const DeleteCollection = (collection) =>
 
 const UpdateCollection = (collection) =>
     fetch(`${COLLECTION_URL}/${collection.id}`, {
-        method: "POST",
+        method: "PUT",
         body: JSON.stringify(collection),
         headers : {
             "content-type" : "application/json"

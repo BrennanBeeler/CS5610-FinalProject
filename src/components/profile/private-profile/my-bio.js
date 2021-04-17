@@ -2,15 +2,17 @@ import React, {useState} from "react";
 import profileActions from "../../../actions/profile-actions";
 import {connect} from "react-redux";
 
-// My Bio pulls this information from database
-// My Bio also has the ability to update this information onto database
-
 const MyBio = ({profileData, updateBio}) => {
 	const [bio, setBio] = useState(profileData.bio)
 
 	//TODO: validate bio information? max length?
-	const handleUpdate = () => {
-		updateBio(bio)
+	async function handleUpdate() {
+		if (await updateBio(profileData, bio) === true) {
+			alert("Bio successfully updated!")
+		}
+		else {
+			alert("Error updating bio. Please try again.")
+		}
 	}
 
 	return (
@@ -29,7 +31,7 @@ const stpm = (state) => ({
 })
 
 const dtpm = (dispatch) => ({
-	updateBio: (bio) => profileActions.updateBio(dispatch, bio)
+	updateBio: (profileData, bio) => profileActions.updateBio(dispatch, profileData, bio)(dispatch)
 })
 
 export default connect(stpm, dtpm)(MyBio);

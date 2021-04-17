@@ -8,6 +8,7 @@ const Register = ({signUp, loggedIn}) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [premium, setPremium] = useState(false);
 
     async function handleSignUp()  {
         if (username === "") {
@@ -24,18 +25,16 @@ const Register = ({signUp, loggedIn}) => {
         }
         //TODO: further validation of all password/username
         else {
-        //    TODO: try to create user on database
-            if (signUp({
+            if (await signUp({
                 username: username,
                 password: password,
-                isPremium: false
+                premium: premium
             }) === true) {
                 console.log("Signed up")
             }
             else {
                 alert("That username is already in use. Please try another!")
             }
-
         }
     }
 
@@ -60,7 +59,8 @@ const Register = ({signUp, loggedIn}) => {
 
             <div className="form-group row">
                 <label htmlFor="passwordFld" className="col-sm-2 col-form-label">
-                    Password </label>
+                    Password
+                </label>
                 <div className="col-sm-10">
                     <input className="form-control"
                            id="passwordFld"
@@ -72,13 +72,27 @@ const Register = ({signUp, loggedIn}) => {
 
             <div className="form-group row">
                 <label htmlFor="confirmPasswordFld" className="col-sm-2 col-form-label">
-                    Confirm Password </label>
+                    Confirm Password
+                </label>
                 <div className="col-sm-10">
                     <input className="form-control"
                            type="password"
                            id="confirmPasswordFld"
                            placeholder="Confirm password" value={confirmPassword}
                            onChange={event => setConfirmPassword(event.target.value)}/>
+                </div>
+            </div>
+
+            <div className="form-group row">
+                <label htmlFor="premiumToggle" className="col-sm-2">
+                    User Type
+                </label>
+                <div className="col-sm-10">
+                    <select className="form-control " id="premiumToggle" value={premium}
+                            onChange={event => setPremium(event.target.value)}>
+                        <option value={false}>Standard</option>
+                        <option value={true}>Premium</option>
+                    </select>
                 </div>
             </div>
             

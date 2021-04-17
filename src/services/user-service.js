@@ -22,7 +22,7 @@ const GetUser = (user) =>
 
 const UpdateUser = (user) =>
     fetch(`${USER_URL}/${user.id}`, {
-        method: "POST",
+        method: "PUT",
         body: JSON.stringify(user),
         headers : {
             "content-type" : "application/json"
@@ -40,8 +40,8 @@ const RegisterUser = (user) =>
     })
         .then(response => response.json())
 
-const GetCollectionForUser = (user) =>
-    fetch(`${USER_URL}/${user.id}/collections`)
+const GetCollectionForUser = (userId) =>
+    fetch(`${USER_URL}/${userId}/collections`)
         .then(response => response.json())
 
 const CreateCollectionForUser = (user, collection) =>
