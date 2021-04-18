@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 import {useHistory} from "react-router-dom";
 import logActions from "../../../actions/log-actions";
 
-const PrivateProfile = ({profileData, loggedIn, logOut}) => {
+const PrivateProfile = ({profileData, loggedIn, logOut, deleteAccount}) => {
     const [active, setActive] = useState("MyInfo");
 
     const history = useHistory();
@@ -46,6 +46,12 @@ const PrivateProfile = ({profileData, loggedIn, logOut}) => {
                         </a>
                     </li>
                 }
+                <li className="nav-item">
+                    <a className={`nav-link ${active === "Account Settings" ? "active" : ""}`}
+                       onClick={() => setActive("Account Settings")}>
+                        Account Settings
+                    </a>
+                </li>
             </ul>
 
             <br/>
@@ -55,17 +61,25 @@ const PrivateProfile = ({profileData, loggedIn, logOut}) => {
                 {active === "MyCreators" && <FollowedCreators/>}
                 {active === "MyCollections" && <MyCollections/>}
                 {active === "MyBio" && <MyBio profileData={profileData}/>}
+                {
+                    active === "Account Settings" &&
+                    <div>
+                        Do you want to delete your account?
+                        <button className="btn btn-danger ml-4" onClick={() => deleteAccount(profileData.id)}>
+                            Delete Account
+                        </button>
+                    </div>
+                }
             </div>
 
-
-
-            <div style={{marginTop: "100px"}}>
-                <button className="btn btn-danger btn-block" onClick={logOut}>
-                    Log Out
-                </button>
-            </div>
-
-
+            {
+                active !== "Account Settings" &&
+                <div style={{marginTop: "100px"}}>
+                    <button className="btn btn-danger btn-block" onClick={logOut}>
+                        Log Out
+                    </button>
+                </div>
+            }
         </div>
     )
 }
@@ -76,7 +90,8 @@ const stpm = (state) => ({
 })
 
 const dtpm = (dispatch) => ({
-    logOut : () => logActions.logOut(dispatch)
+    logOut : () => logActions.logOut(dispatch),
+    deleteAccount : (userId) => logActions.deleteAccount(dispatch, userId)
 })
 
 export default connect(stpm, dtpm)(PrivateProfile);

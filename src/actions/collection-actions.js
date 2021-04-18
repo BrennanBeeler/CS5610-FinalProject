@@ -37,6 +37,19 @@ const addQuoteToCollection = (dispatch, collection, quoteId) => {
     )
 }
 
+const removeQuoteFromCollection = (dispatch, collection, quoteId) => {
+    console.log(collection, quoteId)
+
+    //TODO: need result?
+    CollectionService.UpdateCollection({
+        ...collection,
+        quoteIds: collection.quoteIds.filter(qid => qid !== quoteId)
+    })
+        .then(response => {
+            console.log(response)
+        })
+}
+
 const createCollectionForUser = (dispatch, userId, collection) => {
     UserService.CreateCollectionForUser(userId, collection)
         .then(response => {
@@ -48,7 +61,8 @@ const collectionActions = {
     getFollowedCollections: getFollowedCollections,
     getMyCollections: getMyCollections,
     addQuoteToCollection: addQuoteToCollection,
-    createCollectionForUser
+    createCollectionForUser,
+    removeQuoteFromCollection
 }
 
 export default collectionActions;

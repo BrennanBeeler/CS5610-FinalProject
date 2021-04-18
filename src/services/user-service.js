@@ -55,8 +55,8 @@ const CreateCollectionForUser = (userId, collection) =>
         .then(response => response.json())
 
 //TODO: determine where/if to use this
-const DeleteUser = (user) =>
-    fetch(`${USER_URL}/${user.id}`, {
+const DeleteUser = (userId) =>
+    fetch(`${USER_URL}/${userId}`, {
         method: "DELETE"
     })
         .then(response => response.json())

@@ -5,14 +5,11 @@ import {connect} from "react-redux";
 import quotesService from "../../../../services/external-quotes-service";
 import {Link} from "react-router-dom";
 
-const CollectionQuote = ({quoteId}) => {
+const CollectionQuote = ({quoteId, collection, removeQuoteFromCollection}) => {
 
     const [quote, setQuote] = useState({});
 
     useEffect(() => {
-        console.log("test")
-
-        //TODO: put in real id
         quotesService.searchByQuoteId(quoteId)
             .then((results) => setQuote(results))
     }, [quoteId])
@@ -33,7 +30,8 @@ const CollectionQuote = ({quoteId}) => {
                             </div>
                         </div>
                         <div className="col-4">
-                            <button className="btn btn-outline-danger float-right">
+                            <button className="btn btn-outline-danger float-right"
+                                    onClick={() => removeQuoteFromCollection(collection, quoteId)}>
                                 Remove quote
                             </button>
                         </div>
@@ -43,18 +41,17 @@ const CollectionQuote = ({quoteId}) => {
             </Card>
         </div>
     )
-
 }
 
 
 const stpm = (state, ownProps) => ({
-    quoteId : ownProps.quoteId
+    quoteId : ownProps.quoteId,
+    collectionId: ownProps.collectionId
 })
 
 const dtpm = (dispatch) => ({
-//    TODO: delete quote from collection
-
-
+    removeQuoteFromCollection: (collection, quoteId) =>
+        collectionActions.removeQuoteFromCollection(dispatch, collection, quoteId)
 })
 
 export default connect(stpm, dtpm)(CollectionQuote);

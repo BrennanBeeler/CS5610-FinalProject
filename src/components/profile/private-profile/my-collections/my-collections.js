@@ -6,12 +6,16 @@ import {Link} from "react-router-dom";
 import CollectionQuote from "./collection-quote";
 import CreateCollectionModal from "./create-collection-modal";
 
-const MyCollections = ({getMyCollections, profileData, collectionOptions, createCollectionForUser}) => {
+const MyCollections = ({getMyCollections, profileData, collectionOptions, temp}) => {
 
 	const [showModal, setShowModal] = useState(false)
 
 	const handleClose = () => {
 		setShowModal(false)
+	}
+
+	{
+		console.log(temp)
 	}
 
 	useEffect(() => {
@@ -75,7 +79,7 @@ const MyCollections = ({getMyCollections, profileData, collectionOptions, create
 									{
 										collection.quoteIds.map(quoteId =>
 											<div>
-												<CollectionQuote quoteId={quoteId}/>
+												<CollectionQuote collection={collection} quoteId={quoteId}/>
 												<br/>
 											</div>
 										)
@@ -94,7 +98,8 @@ const MyCollections = ({getMyCollections, profileData, collectionOptions, create
 
 const stpm = (state) => ({
 	profileData : state.profileData,
-	collectionOptions: state.collectionOptions
+	collectionOptions: state.collectionOptions,
+	temp: state
 })
 
 const dtpm = (dispatch) => ({
