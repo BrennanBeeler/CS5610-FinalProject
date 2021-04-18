@@ -1,4 +1,4 @@
-const COLLECTION_URL = "http://localhost:8080/api/collections";
+const COLLECTION_URL = "http://cs5610-finalproj-server-java.herokuapp.com/api/collections";
 
 //TODO: set up on server side
 const GetCollectionById = (collectionId) =>

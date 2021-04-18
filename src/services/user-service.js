@@ -1,4 +1,4 @@
-const USER_URL = "http://localhost:8080/api/users";
+const USER_URL = "http://cs5610-finalproj-server-java.herokuapp.com/api/users";
 
 // Got help with null response from API from https://mcculloughwebservices.com/2016/09/23/handling-a-null-response-from-an-api/
 const LogInUser = (username, password) =>

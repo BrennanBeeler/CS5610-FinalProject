@@ -1,4 +1,4 @@
-const POST_URL = "http://localhost:8080/api/";
+const POST_URL = "http://cs5610-finalproj-server-java.herokuapp.com/api/";
 
 const CreatePostOnQuote = (post, quoteId) =>
     fetch(`${POST_URL}/quotes/${quoteId}/posts`, {

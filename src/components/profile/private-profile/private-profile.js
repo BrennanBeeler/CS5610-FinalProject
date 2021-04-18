@@ -59,7 +59,7 @@ const PrivateProfile = ({profileData, loggedIn, logOut, deleteAccount}) => {
 
                 {active === "MyInfo" && <MyInfo profileData={profileData}/>}
                 {active === "MyCreators" && <FollowedCreators/>}
-                {active === "MyCollections" && <MyCollections/>}
+                {active === "MyCollections" && <MyCollections key={new Date().getTime()}/>}
                 {active === "MyBio" && <MyBio profileData={profileData}/>}
                 {
                     active === "Account Settings" &&

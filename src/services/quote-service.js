@@ -1,6 +1,5 @@
-const QUOTE_URL = "http://localhost:8080/api/quotes";
+const QUOTE_URL = "http://cs5610-finalproj-server-java.herokuapp.com/api/quotes";
 
-//TODO: set up on server side
 const GetQuoteByID = (apiId) =>
     fetch(`${QUOTE_URL}/${apiId}`)
         .then(response => response.json())

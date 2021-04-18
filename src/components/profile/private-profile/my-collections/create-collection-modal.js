@@ -8,19 +8,23 @@ const CreateCollectionModal = (
         show,
         handleClose,
         profileData,
-        createCollectionForUser
+        createCollectionForUser,
+        handleLocalCreateCollection
     }) => {
 
     const [collectionName, setCollectionName] = useState("");
 
-    // TODO: Need modal for this
     const handleCollectionCreation = () => {
         createCollectionForUser(profileData.id, {
             collectionName: collectionName,
             likes: 0,
             quoteIds: [],
             userId: profileData.id
+        }).then(response => {
+            console.log(response)
+            handleLocalCreateCollection(response)
         })
+        handleClose()
     }
 
     return(
@@ -50,6 +54,7 @@ const CreateCollectionModal = (
 const stpm = (state, ownProps) => ({
     show: ownProps.show,
     handleClose: ownProps.handleClose,
+    handleLocalCreateCollection: ownProps.handleLocalCreateCollection,
     profileData: state.profileData,
     collectionOptions: state.collectionOptions,
     loggedIn: state.loggedIn
