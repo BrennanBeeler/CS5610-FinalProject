@@ -1,15 +1,28 @@
 const COLLECTION_URL = "http://cs5610-finalproj-server-java.herokuapp.com/api/collections";
 
-//TODO: set up on server side
 const GetCollectionById = (collectionId) =>
     fetch(`${COLLECTION_URL}/${collectionId}`)
-        .then(response => response.json())
+        .then(response =>  {
+            if(!response.ok) {
+                return {};
+            }
+            else {
+                return response.json()
+            }
+        })
 
 const DeleteCollection = (collectionId) =>
     fetch(`${COLLECTION_URL}/${collectionId}`, {
         method: "DELETE"
     })
-        .then(response => response.json())
+        .then(response =>  {
+            if(!response.ok) {
+                return {};
+            }
+            else {
+                return response.json()
+            }
+        })
 
 const UpdateCollection = (collection) =>
     fetch(`${COLLECTION_URL}/${collection.id}`, {
@@ -19,7 +32,14 @@ const UpdateCollection = (collection) =>
             "content-type" : "application/json"
         }
     })
-        .then(response => response.json())
+        .then(response =>  {
+            if(!response.ok) {
+                return {};
+            }
+            else {
+                return response.json()
+            }
+        })
 
 const CollectionService = {
     GetCollectionById,

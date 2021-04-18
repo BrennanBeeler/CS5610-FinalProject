@@ -10,7 +10,7 @@ const MyCollections = ({getMyCollections, profileData, collectionOptions, delete
 
 	const [showModal, setShowModal] = useState(false)
 
-	const [localCollectionOptions, setLocalCollectionOptions] = useState(collectionOptions)
+	const [localCollectionOptions, setLocalCollectionOptions] = useState([])
 
 	const handleClose = () => {
 		setShowModal(false)
@@ -29,6 +29,10 @@ const MyCollections = ({getMyCollections, profileData, collectionOptions, delete
 					alert("Collection name already in use! Please try another.")
 				}
 			})
+	}
+
+	{
+		console.log(localCollectionOptions)
 	}
 
 	const handleDeleteCollection = (collection) => {

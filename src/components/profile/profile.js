@@ -5,7 +5,7 @@ import "./profile.css";
 import PrivateProfile from "./private-profile/private-profile";
 import PublicProfile from "./public-profile/public-profile";
 
-const ProfileEditor = () => {
+const Profile = () => {
 	const [active, setActive] = useState("MyInfo");
 	const { profileId } = useParams();
 
@@ -18,4 +18,4 @@ const ProfileEditor = () => {
 	);
 };
 
-export default ProfileEditor;
+export default Profile;

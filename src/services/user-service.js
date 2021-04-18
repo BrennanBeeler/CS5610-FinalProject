@@ -12,9 +12,15 @@ const LogInUser = (username, password) =>
             "content-type" : "application/json"
         }
     })
-        .then(response => response.text())
-        .then(text =>text.length ? JSON.parse(text) : {})
-
+        .then(response =>  {
+            if(!response.ok) {
+                return {};
+            }
+            else {
+                return response.text()
+                    .then(text =>text.length ? JSON.parse(text) : {})
+            }
+        })
 
 const GetUser = (user) =>
     fetch(`${USER_URL}/${user.id}`)

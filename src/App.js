@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Route } from "react-router-dom";
 import Home from "./components/home/home";
-import ProfileEditor from "./components/profile/profile";
+import Profile from "./components/profile/profile";
 import Search from "./components/search/search";
 import Details from "./components/details/details";
 import Login from "./components/login/login";
@@ -28,7 +28,7 @@ function App() {
                     </Route>
 
                     <Route path={["/profile", "/profile/:profileId"]} exact={true}>
-                        <ProfileEditor/>
+                        <Profile/>
                     </Route>
 
                     <Route path="/login">
