@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import CollectionQuote from "./collection-quote";
 import CreateCollectionModal from "./create-collection-modal";
 
-const MyCollections = ({getMyCollections, profileData, collectionOptions, deleteCollection}) => {
+const MyCollections = ({getMyCollections, profileData, collectionOptions, deleteCollection, createCollectionForUser}) => {
 
 	const [showModal, setShowModal] = useState(false)
 
@@ -16,20 +16,21 @@ const MyCollections = ({getMyCollections, profileData, collectionOptions, delete
 		setShowModal(false)
 	}
 
-	//TODO: figure out why not called
-	const handleLocalCreateCollection = (collection) => {
-		console.log("I'm here")
-		console.log(collection)
-		console.log(localCollectionOptions.concat([collection]))
-
-		setLocalCollectionOptions(localCollectionOptions.concat([collection]))
-	}
-
 	const handleCreateCollection = (collection) => {
-
+		createCollectionForUser(profileData.id, collection)
+			.then(response => {
+				if (response.id !== null) {
+					setLocalCollectionOptions([
+						...localCollectionOptions,
+						response
+					])
+				}
+				else {
+					alert("Collection name already in use! Please try another.")
+				}
+			})
 	}
 
-	//TODO: figure out why this isn't called
 	const handleDeleteCollection = (collection) => {
 		deleteCollection(collection.id)
 			.then(response => {
@@ -53,7 +54,7 @@ const MyCollections = ({getMyCollections, profileData, collectionOptions, delete
 
 			<CreateCollectionModal show={showModal}
 								   key={new Date().getTime()}
-								   handleLocalCreateCollection={handleLocalCreateCollection}
+								   handleCreateCollection={handleCreateCollection}
 								   handleClose={() => handleClose()}/>
 
 			<br/>

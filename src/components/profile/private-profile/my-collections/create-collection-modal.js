@@ -9,22 +9,21 @@ const CreateCollectionModal = (
         handleClose,
         profileData,
         createCollectionForUser,
-        handleLocalCreateCollection
+        handleCreateCollection
     }) => {
 
     const [collectionName, setCollectionName] = useState("");
 
-    const handleCollectionCreation = () => {
-        createCollectionForUser(profileData.id, {
-            collectionName: collectionName,
-            likes: 0,
-            quoteIds: [],
-            userId: profileData.id
-        }).then(response => {
-            console.log(response)
-            handleLocalCreateCollection(response)
-        })
-        handleClose()
+    const handleSubmit = () => {
+        if(collectionName !== "") {
+            handleCreateCollection({
+                collectionName: collectionName,
+                likes: 0,
+                quoteIds: [],
+                userId: profileData.id
+            })
+            handleClose()
+        }
     }
 
     return(
@@ -42,7 +41,7 @@ const CreateCollectionModal = (
                     <Button variant="secondary" onClick={handleClose}>
                         Cancel
                     </Button>
-                    <Button variant="primary" onClick={handleCollectionCreation}>
+                    <Button variant="primary" onClick={handleSubmit}>
                         Create Collection
                     </Button>
                 </Modal.Footer>
@@ -54,7 +53,7 @@ const CreateCollectionModal = (
 const stpm = (state, ownProps) => ({
     show: ownProps.show,
     handleClose: ownProps.handleClose,
-    handleLocalCreateCollection: ownProps.handleLocalCreateCollection,
+    handleCreateCollection: ownProps.handleCreateCollection,
     profileData: state.profileData,
     collectionOptions: state.collectionOptions,
     loggedIn: state.loggedIn
