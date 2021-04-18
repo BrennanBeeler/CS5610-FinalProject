@@ -57,12 +57,20 @@ const createCollectionForUser = (dispatch, userId, collection) => {
         })
 }
 
+const deleteCollection = (dispatch, collectionId) => {
+    CollectionService.DeleteCollection(collectionId)
+        .then(response => {
+                console.log(response)
+        })
+}
+
 const collectionActions = {
     getFollowedCollections: getFollowedCollections,
     getMyCollections: getMyCollections,
     addQuoteToCollection: addQuoteToCollection,
     createCollectionForUser,
-    removeQuoteFromCollection
+    removeQuoteFromCollection,
+    deleteCollection
 }
 
 export default collectionActions;

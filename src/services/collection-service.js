@@ -5,8 +5,8 @@ const GetCollectionById = (collectionId) =>
     fetch(`${COLLECTION_URL}/${collectionId}`)
         .then(response => response.json())
 
-const DeleteCollection = (collection) =>
-    fetch(`${COLLECTION_URL}/${collection.id}`, {
+const DeleteCollection = (collectionId) =>
+    fetch(`${COLLECTION_URL}/${collectionId}`, {
         method: "DELETE"
     })
         .then(response => response.json())

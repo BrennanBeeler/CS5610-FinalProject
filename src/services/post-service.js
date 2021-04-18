@@ -1,26 +1,7 @@
 const POST_URL = "http://localhost:8080/api/";
 
-//TODO: should these be get?
-const GetPostsForCollection = (collection) =>
-    fetch(`${POST_URL}/collections/${collection.id}/posts`, {
-        method: "POST",
-        headers : {
-            "content-type" : "application/json"
-        }
-    })
-        .then(response => response.json())
-
-const GetPostsForQuote = (quote) =>
-    fetch(`${POST_URL}/quotes/${quote.id}/posts`, {
-        method: "POST",
-        headers : {
-            "content-type" : "application/json"
-        }
-    })
-        .then(response => response.json())
-
-const CreatePostOnCollection = (post, collection) =>
-    fetch(`${POST_URL}/collections/${collection.id}/posts`, {
+const CreatePostOnQuote = (post, quoteId) =>
+    fetch(`${POST_URL}/quotes/${quoteId}/posts`, {
         method: "POST",
         body: JSON.stringify(post),
         headers : {
@@ -29,8 +10,8 @@ const CreatePostOnCollection = (post, collection) =>
     })
         .then(response => response.json())
 
-const CreatePostOnQuote = (post, quote) =>
-    fetch(`${POST_URL}/quotes/${quote.id}/posts`, {
+const CreatePostOnCollection = (post, collectionId) =>
+    fetch(`${POST_URL}/collections/${collectionId}/posts`, {
         method: "POST",
         body: JSON.stringify(post),
         headers : {
@@ -39,15 +20,28 @@ const CreatePostOnQuote = (post, quote) =>
     })
         .then(response => response.json())
 
-const DeletePost = (post) =>
-    fetch(`${POST_URL}/posts/${post.id}`, {
+const GetPostsForQuote = (quoteId) =>
+    fetch(`${POST_URL}/quotes/${quoteId}/posts`)
+        .then(response => response.json())
+
+const GetPostsForCollection = (collectionId) =>
+    fetch(`${POST_URL}/collections/${collectionId}/posts`)
+        .then(response => response.json())
+
+const GetPostsForUser = (userId) =>
+    fetch(`${POST_URL}/users/${userId}/posts`)
+        .then(response => response.json())
+
+
+const DeletePost = (postId) =>
+    fetch(`${POST_URL}/posts/${postId}`, {
         method: "DELETE"
     })
         .then(response => response.json())
 
 const UpdatePost = (post) =>
     fetch(`${POST_URL}/posts/${post.id}`, {
-        method: "POST",
+        method: "PUT",
         body: JSON.stringify(post),
         headers : {
             "content-type" : "application/json"
@@ -55,10 +49,6 @@ const UpdatePost = (post) =>
     })
         .then(response => response.json())
 
-//TODO: needs to be created server side
-const GetPostsForUser = (user) => {
-
-}
 
 const PostService = {
     GetPostsForCollection,

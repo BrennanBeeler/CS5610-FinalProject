@@ -6,14 +6,13 @@ import {Link} from "react-router-dom";
 import CollectionQuote from "./collection-quote";
 import CreateCollectionModal from "./create-collection-modal";
 
-const MyCollections = ({getMyCollections, profileData, collectionOptions, temp}) => {
+const MyCollections = ({getMyCollections, profileData, collectionOptions, temp, deleteCollection}) => {
 
 	const [showModal, setShowModal] = useState(false)
 
 	const handleClose = () => {
 		setShowModal(false)
 	}
-
 	{
 		console.log(temp)
 	}
@@ -84,8 +83,14 @@ const MyCollections = ({getMyCollections, profileData, collectionOptions, temp})
 											</div>
 										)
 									}
+									<br/>
+									<button className="btn-outline-danger btn float-right mb-3"
+											onClick={() => deleteCollection(collection.id)}>
+										Delete Collection
+									</button>
 								</Card.Body>
 							</Accordion.Collapse>
+
 						</Card>
 					</Accordion>
 				)
@@ -103,7 +108,8 @@ const stpm = (state) => ({
 })
 
 const dtpm = (dispatch) => ({
-	getMyCollections: (userId) => collectionActions.getMyCollections(dispatch, userId)
+	getMyCollections: (userId) => collectionActions.getMyCollections(dispatch, userId),
+	deleteCollection: (collectionId) => collectionActions.deleteCollection(dispatch, collectionId)
 })
 
 export default connect(stpm, dtpm)(MyCollections);

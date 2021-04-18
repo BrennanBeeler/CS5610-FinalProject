@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import quotesService from "../../../services/external-quotes-service";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import profileActions from "../../../actions/profile-actions";
 import {connect} from "react-redux";
 import AddQuoteToCollection from "./add-quote-to-collection";
@@ -11,6 +11,11 @@ const QuoteDetails = ({profileData, loggedIn}) => {
     const [quote, setQuote] = useState({})
     const [showModal, setShowModal] = useState(false)
 
+    const [comment, setComment] = useState("");
+
+    const handleSubmitComment = () => {
+
+    }
 
     useEffect(() => {
         quotesService.searchByQuoteId(quoteId).then((results) => {
@@ -67,7 +72,9 @@ const QuoteDetails = ({profileData, loggedIn}) => {
                             {
                                 quote.categories.map(result =>
                                     <li>
-                                        {result}
+                                        <Link to={`/search/${result}`}>
+                                            {result}
+                                        </Link>
                                     </li>
                                 )
                             }
@@ -76,7 +83,7 @@ const QuoteDetails = ({profileData, loggedIn}) => {
                 </ul>
 
                 <h3>
-                    Posts
+                    Comments
                 </h3>
 
             {/*    TODO: get quote posts for this quote- these link out to profile of user who made them?*/}
@@ -94,6 +101,15 @@ const QuoteDetails = ({profileData, loggedIn}) => {
                         Quote post 4
                     </li>
                 </ul>
+
+                <div>
+                    <label htmlFor="quoteCommentFld" className="form-check-label">Add comment</label>
+                    <textarea className="form-control" id="quoteCommentFld" value={comment} placeholder="Enter comment"
+                              onChange={event => setComment(event.target.value)}/>
+                    <button className="btn btn-success mt-2 float-right">
+                        Submit post
+                    </button>
+                </div>
             </div>
         </div>
     )
