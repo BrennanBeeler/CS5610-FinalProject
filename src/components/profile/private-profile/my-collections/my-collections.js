@@ -31,10 +31,6 @@ const MyCollections = ({getMyCollections, profileData, collectionOptions, delete
 			})
 	}
 
-	{
-		console.log(localCollectionOptions)
-	}
-
 	const handleDeleteCollection = (collection) => {
 		deleteCollection(collection.id)
 			.then(response => {

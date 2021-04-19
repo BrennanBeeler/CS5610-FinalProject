@@ -20,14 +20,19 @@ const CollectionQuote = ({quoteId, collection, removeQuoteFromCollection}) => {
                 <Card.Body>
                     <div className="row">
                         <div className="col-8">
-                            <Link to={`/details/quote/${quoteId}`}>
-                                {quote.quote}
-                            </Link>
-                            <br/>
-                            <div className="ml-5">
-                                <br/>
-                                - {quote.author}
-                            </div>
+                            <blockquote>
+                                <Link to={`/details/quote/${quoteId}`}>
+                                    {quote.quote}
+                                </Link>
+                            </blockquote>
+                            {
+                                quote.author !== null &&
+                                <div className="ml-5">
+                                    <footer className="blockquote-footer">
+                                        {quote.author}
+                                    </footer>
+                                </div>
+                            }
                         </div>
                         <div className="col-4">
                             <button className="btn btn-outline-danger float-right"

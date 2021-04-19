@@ -102,14 +102,18 @@ const QuoteDetails = ({profileData, loggedIn}) => {
                     </li>
                 </ul>
 
-                <div>
-                    <label htmlFor="quoteCommentFld" className="form-check-label">Add comment</label>
-                    <textarea className="form-control" id="quoteCommentFld" value={comment} placeholder="Enter comment"
-                              onChange={event => setComment(event.target.value)}/>
-                    <button className="btn btn-success mt-2 float-right">
-                        Submit post
-                    </button>
-                </div>
+                {
+                    loggedIn &&
+                    <div>
+                        <label htmlFor="quoteCommentFld" className="form-check-label">Add comment</label>
+                        <textarea className="form-control" id="quoteCommentFld" value={comment} placeholder="Enter comment"
+                                  onChange={event => setComment(event.target.value)}/>
+                        {/*          TODO: set up submit post*/}
+                        <button className="btn btn-success mt-2 float-right">
+                            Submit post
+                        </button>
+                    </div>
+                }
             </div>
         </div>
     )
