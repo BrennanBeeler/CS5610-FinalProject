@@ -4,17 +4,33 @@ import {Link, useParams} from "react-router-dom";
 import profileActions from "../../../actions/profile-actions";
 import {connect} from "react-redux";
 import AddQuoteToCollection from "./add-quote-to-collection";
+import PostService from "../../../services/post-service";
+import PostDisplay from "../post-display";
 
 const QuoteDetails = ({profileData, loggedIn}) => {
 
     const {quoteId} = useParams();
-    const [quote, setQuote] = useState({})
-    const [showModal, setShowModal] = useState(false)
-
+    const [quote, setQuote] = useState({});
+    const [showModal, setShowModal] = useState(false);
+    const [posts, setPosts] = useState([]);
     const [comment, setComment] = useState("");
 
-    const handleSubmitComment = () => {
-
+    const handleSubmitPost = () => {
+        PostService.CreatePostOnQuote({
+            postText: comment,
+            userId: profileData.id,
+            likes: 0,
+            contentId: quoteId
+        }, quoteId)
+            .then(response => {
+                //TODO: validate
+                if(response !== "BAD") {
+                    setPosts([...posts, response])
+                }
+                else {
+                    alert("Encountered trouble posting comment. Please try again.")
+                }
+            })
     }
 
     useEffect(() => {
@@ -85,22 +101,20 @@ const QuoteDetails = ({profileData, loggedIn}) => {
                 <h3>
                     Comments
                 </h3>
-
-            {/*    TODO: get quote posts for this quote- these link out to profile of user who made them?*/}
-                <ul>
-                    <li>
-                        Quote post 1
-                    </li>
-                    <li>
-                        Quote post 2
-                    </li>
-                    <li>
-                        Quote post 3
-                    </li>
-                    <li>
-                        Quote post 4
-                    </li>
-                </ul>
+                {
+                    posts.length !== 0 ?
+                        <div>
+                            {
+                                posts.map(post =>
+                                    <PostDisplay post={post}/>
+                                )
+                            }
+                        </div>
+                        :
+                        <div className="text-center">
+                            No comments for this collection yet!
+                        </div>
+                }
 
                 {
                     loggedIn &&
@@ -109,7 +123,7 @@ const QuoteDetails = ({profileData, loggedIn}) => {
                         <textarea className="form-control" id="quoteCommentFld" value={comment} placeholder="Enter comment"
                                   onChange={event => setComment(event.target.value)}/>
                         {/*          TODO: set up submit post*/}
-                        <button className="btn btn-success mt-2 float-right">
+                        <button className="btn btn-success mt-2 float-right" onClick={handleSubmitPost}>
                             Submit post
                         </button>
                     </div>

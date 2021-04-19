@@ -3,19 +3,45 @@ import {connect} from "react-redux";
 import CollectionService from "../../../services/collection-service";
 import {Link, useParams} from "react-router-dom";
 import CollectionDetailsQuote from "./collection-details-quote";
+import PostService from "../../../services/post-service";
+import UserService from "../../../services/user-service";
+import PostDisplay from "../post-display";
 
-const CollectionDetails = ({loggedIn}) => {
+const CollectionDetails = ({loggedIn, profileData}) => {
 
     const {collectionId} = useParams();
 
     const [collection, setCollection] = useState({});
     const [comment, setComment] = useState("");
+    const [posts, setPosts] = useState([]);
 
+    const handleSubmitPost = () => {
+        PostService.CreatePostOnCollection({
+            postText: comment,
+            userId: profileData.id,
+            likes: 0,
+            contentId: collectionId
+        }, collectionId)
+            .then(response => {
+                //TODO: validate
+                if(response !== "BAD") {
+                    setPosts([...posts, response])
+                }
+                else {
+                    alert("Encountered trouble posting comment. Please try again.")
+                }
+            })
+    }
 
     useEffect(() => {
         CollectionService.GetCollectionById(collectionId).then((results) => {
             setCollection(results)
         })
+
+        //TODO: currently broken
+        // PostService.GetPostsForCollection(collectionId).then(results => {
+        //     setPosts(results)
+        // })
     }, [collectionId])
 
     return(
@@ -59,20 +85,23 @@ const CollectionDetails = ({loggedIn}) => {
             </h3>
 
             {/*TODO: get quote posts for this quote- these link out to profile of user who made them?*/}
-            <ul>
-                <li>
-                    Quote post 1
-                </li>
-                <li>
-                    Quote post 2
-                </li>
-                <li>
-                    Quote post 3
-                </li>
-                <li>
-                    Quote post 4
-                </li>
-            </ul>
+
+            {
+                posts.length !== 0 ?
+                <div>
+                    {
+                        posts.map(post =>
+                            <PostDisplay post={post}/>
+                       )
+                    }
+                </div>
+                    :
+                    <div className="text-center">
+                        No comments for this collection yet!
+                    </div>
+            }
+
+            <br/>
 
             {
                 loggedIn === true &&
@@ -80,8 +109,7 @@ const CollectionDetails = ({loggedIn}) => {
                     <label htmlFor="quoteCommentFld" className="form-check-label">Add comment</label>
                     <textarea className="form-control" id="quoteCommentFld" value={comment} placeholder="Enter comment"
                               onChange={event => setComment(event.target.value)}/>
-                    {/*          TODO: set up submit post*/}
-                    <button className="btn btn-success mt-2 float-right">
+                    <button className="btn btn-success mt-2 float-right" onClick={handleSubmitPost}>
                         Submit post
                     </button>
                 </div>
@@ -92,7 +120,8 @@ const CollectionDetails = ({loggedIn}) => {
 
 
 const stpm = (state) => ({
-    loggedIn: state.loggedIn
+    loggedIn: state.loggedIn,
+    profileData: state.profileData
 })
 
 const dtpm = (dispatch) => ({

@@ -22,8 +22,8 @@ const LogInUser = (username, password) =>
             }
         })
 
-const GetUser = (user) =>
-    fetch(`${USER_URL}/${user.id}`)
+const GetUser = (userId) =>
+    fetch(`${USER_URL}/${userId}`)
         .then(response => response.json())
 
 const UpdateUser = (user) =>
