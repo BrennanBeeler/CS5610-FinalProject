@@ -28,10 +28,13 @@ const GetPostsForCollection = (collectionId) =>
     fetch(`${POST_URL}collections/${collectionId}/posts`)
         .then(response => response.json())
 
-const GetPostsForUser = (userId) =>
-    fetch(`${POST_URL}users/${userId}/posts`)
+const GetCollectionPostsForUser = (userId) =>
+    fetch(`${POST_URL}users/${userId}/collections/posts`)
         .then(response => response.json())
 
+const GetQuotePostsForUser = (userId) =>
+    fetch(`${POST_URL}users/${userId}/quotes/posts`)
+        .then(response => response.json())
 
 const DeletePost = (postId) =>
     fetch(`${POST_URL}posts/${postId}`, {
@@ -53,11 +56,12 @@ const UpdatePost = (post) =>
 const PostService = {
     GetPostsForCollection,
     GetPostsForQuote,
-    GetPostsForUser,
+    GetCollectionPostsForUser,
     CreatePostOnCollection,
     CreatePostOnQuote,
     DeletePost,
-    UpdatePost
+    UpdatePost,
+    GetQuotePostsForUser
 }
 
 export default PostService;

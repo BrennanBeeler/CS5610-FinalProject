@@ -5,7 +5,7 @@ import profileActions from "../../../actions/profile-actions";
 import {connect} from "react-redux";
 import AddQuoteToCollection from "./add-quote-to-collection";
 import PostService from "../../../services/post-service";
-import PostDisplay from "../post-display";
+import DetailsPostDisplay from "../details-post-display";
 
 const QuoteDetails = ({profileData, loggedIn}) => {
 
@@ -36,6 +36,10 @@ const QuoteDetails = ({profileData, loggedIn}) => {
     useEffect(() => {
         quotesService.searchByQuoteId(quoteId).then((results) => {
             setQuote(results)
+        })
+
+        PostService.GetPostsForQuote(quoteId).then(results => {
+            setPosts(results)
         })
     }, [quoteId])
 
@@ -106,7 +110,7 @@ const QuoteDetails = ({profileData, loggedIn}) => {
                         <div>
                             {
                                 posts.map(post =>
-                                    <PostDisplay post={post}/>
+                                    <DetailsPostDisplay post={post}/>
                                 )
                             }
                         </div>
@@ -122,7 +126,6 @@ const QuoteDetails = ({profileData, loggedIn}) => {
                         <label htmlFor="quoteCommentFld" className="form-check-label">Add comment</label>
                         <textarea className="form-control" id="quoteCommentFld" value={comment} placeholder="Enter comment"
                                   onChange={event => setComment(event.target.value)}/>
-                        {/*          TODO: set up submit post*/}
                         <button className="btn btn-success mt-2 float-right" onClick={handleSubmitPost}>
                             Submit post
                         </button>
@@ -131,7 +134,6 @@ const QuoteDetails = ({profileData, loggedIn}) => {
             </div>
         </div>
     )
-
 }
 
 const stpm = (state) => ({
@@ -139,8 +141,4 @@ const stpm = (state) => ({
     loggedIn: state.loggedIn
 })
 
-const dtpm = (dispatch) => ({
-    updateBio: (bio) => profileActions.updateBio(dispatch, bio)
-})
-
-export default connect(stpm, dtpm)(QuoteDetails);
+export default connect(stpm)(QuoteDetails);

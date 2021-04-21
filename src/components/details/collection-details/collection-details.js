@@ -5,7 +5,7 @@ import {Link, useParams} from "react-router-dom";
 import CollectionDetailsQuote from "./collection-details-quote";
 import PostService from "../../../services/post-service";
 import UserService from "../../../services/user-service";
-import PostDisplay from "../post-display";
+import DetailsPostDisplay from "../details-post-display";
 
 const CollectionDetails = ({loggedIn, profileData}) => {
 
@@ -38,10 +38,9 @@ const CollectionDetails = ({loggedIn, profileData}) => {
             setCollection(results)
         })
 
-        //TODO: currently broken
-        // PostService.GetPostsForCollection(collectionId).then(results => {
-        //     setPosts(results)
-        // })
+        PostService.GetPostsForCollection(collectionId).then(results => {
+            setPosts(results)
+        })
     }, [collectionId])
 
     return(
@@ -84,14 +83,13 @@ const CollectionDetails = ({loggedIn, profileData}) => {
                 Comments
             </h3>
 
-            {/*TODO: get quote posts for this quote- these link out to profile of user who made them?*/}
 
             {
                 posts.length !== 0 ?
                 <div>
                     {
                         posts.map(post =>
-                            <PostDisplay post={post}/>
+                            <DetailsPostDisplay post={post}/>
                        )
                     }
                 </div>
@@ -124,8 +122,5 @@ const stpm = (state) => ({
     profileData: state.profileData
 })
 
-const dtpm = (dispatch) => ({
 
-})
-
-export default connect(stpm, dtpm)(CollectionDetails);
+export default connect(stpm)(CollectionDetails);

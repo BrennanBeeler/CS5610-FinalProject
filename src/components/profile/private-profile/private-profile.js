@@ -6,6 +6,7 @@ import MyBio from "./my-bio";
 import {connect} from "react-redux";
 import {useHistory} from "react-router-dom";
 import logActions from "../../../actions/log-actions";
+import MyPosts from "./my-posts/my-posts";
 
 const PrivateProfile = ({profileData, loggedIn, logOut, deleteAccount}) => {
     const [active, setActive] = useState("MyInfo");
@@ -46,6 +47,14 @@ const PrivateProfile = ({profileData, loggedIn, logOut, deleteAccount}) => {
                         </a>
                     </li>
                 }
+                {
+                    <li className="nav-item">
+                        <a className={`nav-link ${active === "MyPosts" ? "active" : ""}`}
+                           onClick={() => setActive("MyPosts")}>
+                            My Posts
+                        </a>
+                    </li>
+                }
                 <li className="nav-item">
                     <a className={`nav-link ${active === "Account Settings" ? "active" : ""}`}
                        onClick={() => setActive("Account Settings")}>
@@ -61,6 +70,7 @@ const PrivateProfile = ({profileData, loggedIn, logOut, deleteAccount}) => {
                 {active === "MyCreators" && <FollowedCreators/>}
                 {active === "MyCollections" && <MyCollections key={new Date().getTime()}/>}
                 {active === "MyBio" && <MyBio profileData={profileData}/>}
+                {active === "MyPosts" && <MyPosts profileData={profileData}/>}
                 {
                     active === "Account Settings" &&
                     <div>

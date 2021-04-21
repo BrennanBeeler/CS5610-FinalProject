@@ -3,7 +3,7 @@ import UserService from "../../services/user-service";
 import {Card} from "react-bootstrap";
 import {Link} from "react-router-dom";
 
-const PostDisplay = ({post}) => {
+const DetailsPostDisplay = ({post}) => {
 
     const [user, setUser] = useState( {username: "Username not found..."});
 
@@ -14,25 +14,27 @@ const PostDisplay = ({post}) => {
                 setUser(response)
             }
         })
-    })
+    }, [post])
 
     return(
-        <div>
+        <div className="mb-2">
             <Card>
+                <Card.Title>
+                    <Link to={`/profile/${post.userId}`}>
+                        <i className="fa fa-user-circle mr-2 ml-2"/>
+                        {user.username} -
+                    </Link>
+                </Card.Title>
                 <Card.Body>
-                    <blockquote>
+                    <p style={{marginLeft: "50px"}}>
                         {
                             post.postText
                         }
-                    </blockquote>
-
-                    <Link to={`/profile/${post.userId}`}>
-                        {user.username}
-                    </Link>
+                    </p>
                 </Card.Body>
             </Card>
         </div>
     )
 }
 
-export default PostDisplay
+export default DetailsPostDisplay;

@@ -21,7 +21,7 @@ const GetPostsForCollection = (collectionId) =>
 
 
 const GetPostsForUser = (userId) =>
-    PostService.GetPostsForUser(userId)
+    PostService.GetCollectionPostsForUser(userId)
         .then(response => response)
 
 
