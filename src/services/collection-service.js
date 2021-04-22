@@ -1,5 +1,16 @@
 const COLLECTION_URL = "http://cs5610-finalproj-server-java.herokuapp.com/api/collections";
 
+const GetAllCollections = () =>
+    fetch(`${COLLECTION_URL}`)
+        .then(response =>  {
+            if(!response.ok) {
+                return [];
+            }
+            else {
+                return response.json()
+            }
+        })
+
 const GetCollectionById = (collectionId) =>
     fetch(`${COLLECTION_URL}/${collectionId}`)
         .then(response =>  {
@@ -44,7 +55,8 @@ const UpdateCollection = (collection) =>
 const CollectionService = {
     GetCollectionById,
     DeleteCollection,
-    UpdateCollection
+    UpdateCollection,
+    GetAllCollections
 }
 
 export default CollectionService;

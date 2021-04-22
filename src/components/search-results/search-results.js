@@ -4,6 +4,8 @@ import CollectionIcon from "../collection-icon/collection-icon";
 import CategoryCard from "../card/category-card";
 import quotesService from "../../services/external-quotes-service"
 import QuoteResult from "./quote-result";
+import CollectionService from "../../services/collection-service";
+import CollectionResult from "./collection-result";
 
 const SearchResults = () => {
 
@@ -11,6 +13,7 @@ const SearchResults = () => {
     const [keywordResults, setKeywordResults] = useState([]);
     const [authorResults, setAuthorResults] = useState([]);
     const [categoryResults, setCategoryResults] = useState([]);
+    const [collectionResults, setCollectionResults] = useState([])
 
     useEffect( () => {
         quotesService.searchByAuthor(searchTerm).then((results) => {
@@ -22,6 +25,14 @@ const SearchResults = () => {
         quotesService.searchByCategory(searchTerm).then((results) => {
                 setCategoryResults(results)
         })
+
+        CollectionService.GetAllCollections().then(results => {
+            const regex = new RegExp(searchTerm, "i");
+            setCollectionResults(results.filter(result =>
+                result.collectionName.match(regex) !== null
+            ))
+        })
+
     }, [searchTerm])
 
     return(
@@ -31,6 +42,10 @@ const SearchResults = () => {
             <h1 className="row border-bottom">
                 Results for: {searchTerm}
             </h1>
+
+            {
+                console.log(collectionResults)
+            }
 
             <h3>
                 Quotes
@@ -83,26 +98,14 @@ const SearchResults = () => {
             </h3>
 
             {/*TODO: populate these appropriately and make them dynamically spaced- always 6*/}
-            <div className="row" style={{paddingBottom: "50px"}}>
-                <div className="col col-sm-2 col-xs-4">
-                    <CollectionIcon/>
-                </div>
-                <div className="col col-sm-2 col-xs-4">
-                    <CollectionIcon/>
-                </div>
-                <div className="col col-sm-2 col-xs-4">
-                    <CollectionIcon/>
-                </div>
-                <div className="col col-sm-2 col-xs-4">
-                    <CollectionIcon/>
-                </div>
-                <div className="col col-sm-2 col-xs-4">
-                    <CollectionIcon/>
-                </div>
-                <div className="col col-sm-2 col-xs-4">
-                    <CollectionIcon/>
-                </div>
-            </div>
+            <ul>
+                {collectionResults.map(result =>
+                    <CollectionResult result={result}/>
+                )}
+            </ul>
+
+            <br/>
+            <br/>
         </div>
     )
 }
