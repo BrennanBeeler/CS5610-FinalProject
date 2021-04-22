@@ -4,17 +4,20 @@ import CategoryCard from "../card/category-card";
 import CollectionIcon from "../collection-icon/collection-icon";
 import ExternalQuoteService from "../../services/external-quotes-service"
 import "./home.css";
+import {Card} from "react-bootstrap";
+import CollectionService from "../../services/collection-service";
+import {Link} from "react-router-dom";
 
 export class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            quoteOfTheDay : {}
+            quoteOfTheDay : {},
+            randomCollections : []
         }
     }
 
     componentDidMount() {
-        // TODO: Can move this into a reducer, but doesn't seem important since it isn't being passed at all
         ExternalQuoteService.getQuoteOfDay().then(response =>
             this.setState((prevState) =>
                 ({...prevState,
@@ -22,6 +25,40 @@ export class Home extends React.Component {
                 })
             )
         )
+
+        CollectionService.GetAllCollections().then(response => {
+            this.setState(prevState =>
+                ({
+                    ...prevState,
+                    randomCollections: response
+                })
+            )
+        })
+    }
+
+    getRandomCollections = (array) => {
+        const length = array.length
+
+        if (length <= 3) {
+            return array
+        }
+        else {
+            let numArray = []
+            while (numArray.length < 3) {
+                let tempVal = Math.floor(Math.random() * length)
+                if (numArray.indexOf(tempVal) === -1) {
+                    numArray.push(tempVal)
+                }
+            }
+
+            let tempArray = []
+
+            numArray.forEach(each => {
+                tempArray.push(array[each])
+            })
+
+            return tempArray
+        }
     }
 
     render() {
@@ -52,21 +89,35 @@ export class Home extends React.Component {
 
                 <br/>
 
-                <div className="text-center">
-                    <h4>Popular Collections</h4>
-                    <br/>
+                {
+                    this.props.loggedIn ?
+                        //IF LOGGED IN
+                        <div>
 
-                    {/*/!*TODO: populate these appropriately and make them dynamically spaced- always 6*!/*/}
-                    {/*<div className="row">*/}
-                    {/*    {*/}
-                    {/*        [0,1,2,3,4,5].map(collection =>*/}
-                    {/*            <div className="col col-sm-2 col-xs-4">*/}
-                    {/*                <CollectionIcon/>*/}
-                    {/*            </div>*/}
-                    {/*        )*/}
-                    {/*    }*/}
-                    {/*</div>*/}
-                </div>
+                        </div>
+                        :
+                        // IF NOT LOGGED IN
+                        <div>
+                            <div className="text-center">
+                                <h4>Collection Showcase</h4>
+                                <br/>
+
+                                <div className="row ml-5 mr-5">
+                                    {
+                                        this.getRandomCollections(this.state.randomCollections).map(collection =>
+                                            <Card className="col-4">
+                                                <Card.Body>
+                                                    <Link to={`/details/collection/${collection.id}`}>
+                                                        {collection.collectionName}
+                                                    </Link>
+                                                </Card.Body>
+                                            </Card>
+                                        )
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                }
             </div>
         )
     }
@@ -76,4 +127,4 @@ const stpm = (state) => ({
     loggedIn: state.loggedIn
 })
 
-export default connect(stpm)(Home)
+export default connect(stpm)(Home);

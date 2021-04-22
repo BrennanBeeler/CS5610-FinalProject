@@ -37,8 +37,6 @@ const CollectionDetails = ({loggedIn, profileData, followCollection, unFollowCol
         setCollection("")
     }
 
-    console.log({profileData})
-
     const handleFollowCollection = () => {
         if (!loggedIn) {
             history.push("/login")
