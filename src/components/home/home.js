@@ -56,16 +56,16 @@ export class Home extends React.Component {
                     <h4>Popular Collections</h4>
                     <br/>
 
-                    {/*TODO: populate these appropriately and make them dynamically spaced- always 6*/}
-                    <div className="row">
-                        {
-                            [0,1,2,3,4,5].map(collection =>
-                                <div className="col col-sm-2 col-xs-4">
-                                    <CollectionIcon/>
-                                </div>
-                            )
-                        }
-                    </div>
+                    {/*/!*TODO: populate these appropriately and make them dynamically spaced- always 6*!/*/}
+                    {/*<div className="row">*/}
+                    {/*    {*/}
+                    {/*        [0,1,2,3,4,5].map(collection =>*/}
+                    {/*            <div className="col col-sm-2 col-xs-4">*/}
+                    {/*                <CollectionIcon/>*/}
+                    {/*            </div>*/}
+                    {/*        )*/}
+                    {/*    }*/}
+                    {/*</div>*/}
                 </div>
             </div>
         )

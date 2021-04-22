@@ -1,15 +1,17 @@
 import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import CollectionService from "../../../services/collection-service";
-import {Link, useParams} from "react-router-dom";
+import {Link, useHistory, useParams} from "react-router-dom";
 import CollectionDetailsQuote from "./collection-details-quote";
 import PostService from "../../../services/post-service";
-import UserService from "../../../services/user-service";
 import DetailsPostDisplay from "../details-post-display";
+import profileActions from "../../../actions/profile-actions";
 
-const CollectionDetails = ({loggedIn, profileData}) => {
+const CollectionDetails = ({loggedIn, profileData, followCollection, unFollowCollection}) => {
 
     const {collectionId} = useParams();
+
+    let history = useHistory();
 
     const [collection, setCollection] = useState({});
     const [comment, setComment] = useState("");
@@ -31,6 +33,24 @@ const CollectionDetails = ({loggedIn, profileData}) => {
                     alert("Encountered trouble posting comment. Please try again.")
                 }
             })
+
+        setCollection("")
+    }
+
+    console.log({profileData})
+
+    const handleFollowCollection = () => {
+        if (!loggedIn) {
+            history.push("/login")
+        }
+        else {
+            if (!profileData.followedCollections.includes(parseInt(collectionId))) {
+                followCollection(profileData, parseInt(collectionId))
+            }
+            else {
+                unFollowCollection(profileData, parseInt(collectionId))
+            }
+        }
     }
 
     useEffect(() => {
@@ -48,9 +68,25 @@ const CollectionDetails = ({loggedIn, profileData}) => {
             <br/>
 
             <div className="row">
-                <h1 className="col-10">
+                <h1 className="col-8">
                     {collection.collectionName}
                 </h1>
+
+                <div className="col-2">
+                    <button className="btn btn-secondary" onClick={handleFollowCollection}>
+                        {
+                            !loggedIn &&
+                            <> Follow this collection </>
+                        }
+                        {
+                            loggedIn && (
+                            profileData.followedCollections.includes(parseInt(collectionId)) ?
+                                <> Unfollow this collection! </>
+                                : <> Follow this collection </>
+                            )
+                        }
+                    </button>
+                </div>
 
                 <div className="col-2">
                     <Link className="btn btn-primary" to={`/profile/${collection.userId}`}>
@@ -58,7 +94,6 @@ const CollectionDetails = ({loggedIn, profileData}) => {
                     </Link>
                 </div>
             </div>
-
             <br/>
 
 
@@ -122,5 +157,10 @@ const stpm = (state) => ({
     profileData: state.profileData
 })
 
+const dtpm = (dispatch) => ({
+    followCollection : (profileData, collectionId) => profileActions.followCollection(dispatch, profileData, collectionId)(dispatch),
+    unFollowCollection : (profileData, collectionId) => profileActions.unFollowCollection(dispatch, profileData, collectionId)(dispatch)
+})
 
-export default connect(stpm)(CollectionDetails);
+
+export default connect(stpm, dtpm)(CollectionDetails);
