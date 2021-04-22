@@ -9,46 +9,46 @@ const PublicCollections = ({
 	profileData,
 	collectionOptions,
 }) => {
-	useEffect(() => {
-		getMyCollections(profileData.id);
-	}, []);
+	// useEffect(() => {
+	// 	getMyCollections(profileData.id);
+	// }, []);
 
 	return (
 		<div>
-			{collectionOptions.map((collection) => (
-				<div>
-					<Accordion>
-						<Card>
-							<Card.Header>
-								<Accordion.Toggle
-									as={Button}
-									variant="link"
-									eventKey="0"
-								>
-									{collection.collectionName}
-								</Accordion.Toggle>
-							</Card.Header>
-							<Accordion.Collapse eventKey="0">
-								<Card.Body>
-									{/*TODO: allow editing of quotes*/}
-									<ul>
-										{collection.quotes.map((quote) => (
-											<li key={quote.id}>
-												<Link
-													to={`/details/quote/${quote.id}`}
-												>
-													{quote.quote}
-												</Link>
-											</li>
-										))}
-									</ul>
-								</Card.Body>
-							</Accordion.Collapse>
-						</Card>
-					</Accordion>
-					<br />
-				</div>
-			))}
+			{/*{collectionOptions.map((collection) => (*/}
+			{/*	<div>*/}
+			{/*		<Accordion>*/}
+			{/*			<Card>*/}
+			{/*				<Card.Header>*/}
+			{/*					<Accordion.Toggle*/}
+			{/*						as={Button}*/}
+			{/*						variant="link"*/}
+			{/*						eventKey="0"*/}
+			{/*					>*/}
+			{/*						{collection.collectionName}*/}
+			{/*					</Accordion.Toggle>*/}
+			{/*				</Card.Header>*/}
+			{/*				<Accordion.Collapse eventKey="0">*/}
+			{/*					<Card.Body>*/}
+			{/*						/!*TODO: allow editing of quotes*!/*/}
+			{/*						<ul>*/}
+			{/*							{collection.quotes.map((quote) => (*/}
+			{/*								<li key={quote.id}>*/}
+			{/*									<Link*/}
+			{/*										to={`/details/quote/${quote.id}`}*/}
+			{/*									>*/}
+			{/*										{quote.quote}*/}
+			{/*									</Link>*/}
+			{/*								</li>*/}
+			{/*							))}*/}
+			{/*						</ul>*/}
+			{/*					</Card.Body>*/}
+			{/*				</Accordion.Collapse>*/}
+			{/*			</Card>*/}
+			{/*		</Accordion>*/}
+			{/*		<br />*/}
+			{/*	</div>*/}
+			{/*))}*/}
 		</div>
 	);
 };

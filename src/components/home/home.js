@@ -90,34 +90,34 @@ export class Home extends React.Component {
                 <br/>
 
                 {
-                    this.props.loggedIn ?
-                        //IF LOGGED IN
-                        <div>
+                    this.props.loggedIn &&
+                    //IF LOGGED IN
+                    <div>
 
-                        </div>
-                        :
-                        // IF NOT LOGGED IN
-                        <div>
-                            <div className="text-center">
-                                <h4>Collection Showcase</h4>
-                                <br/>
-
-                                <div className="row ml-5 mr-5">
-                                    {
-                                        this.getRandomCollections(this.state.randomCollections).map(collection =>
-                                            <Card className="col-4">
-                                                <Card.Body>
-                                                    <Link to={`/details/collection/${collection.id}`}>
-                                                        {collection.collectionName}
-                                                    </Link>
-                                                </Card.Body>
-                                            </Card>
-                                        )
-                                    }
-                                </div>
-                            </div>
-                        </div>
+                    </div>
                 }
+
+                <div>
+                    <div className="text-center">
+                        <h4>Collection Showcase</h4>
+                        <br/>
+
+                        <div className="row ml-5 mr-5">
+                            {
+                                this.getRandomCollections(this.state.randomCollections).map(collection =>
+                                    <Card className="col-4">
+                                        <Card.Body>
+                                            <Link to={`/details/collection/${collection.id}`}>
+                                                {collection.collectionName}
+                                            </Link>
+                                        </Card.Body>
+                                    </Card>
+                                )
+                            }
+                        </div>
+                    </div>
+                </div>
+
             </div>
         )
     }
