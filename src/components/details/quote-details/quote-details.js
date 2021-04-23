@@ -26,6 +26,7 @@ const QuoteDetails = ({profileData, loggedIn}) => {
                 //TODO: validate
                 if(response !== "BAD") {
                     setPosts([...posts, response])
+                    setComment("")
                 }
                 else {
                     alert("Encountered trouble posting comment. Please try again.")

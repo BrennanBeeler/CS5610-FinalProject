@@ -28,13 +28,12 @@ const CollectionDetails = ({loggedIn, profileData, followCollection, unFollowCol
                 //TODO: validate
                 if(response !== "BAD") {
                     setPosts([...posts, response])
+                    setComment("")
                 }
                 else {
                     alert("Encountered trouble posting comment. Please try again.")
                 }
             })
-
-        setCollection("")
     }
 
     const handleFollowCollection = () => {
