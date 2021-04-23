@@ -5,6 +5,7 @@ import "./home.css";
 import {Card} from "react-bootstrap";
 import CollectionService from "../../services/collection-service";
 import {Link} from "react-router-dom";
+import HomeFollowedCollection from "./home-followed-collection";
 
 export class Home extends React.Component {
     constructor(props) {
@@ -85,20 +86,28 @@ export class Home extends React.Component {
 
                 <br/>
 
-                <br/>
 
                 {
                     this.props.loggedIn &&
                     //IF LOGGED IN
                     <div>
+                        <div className="text-center">
+                            <h4>Some Collections You Follow</h4>
 
+                            <div className="row ml-5 mr-5">
+                                {
+                                    this.getRandomCollections(this.props.profileData.followedCollections).map(collection =>
+                                        <HomeFollowedCollection collectionId={collection}/>
+                                    )
+                                }
+                            </div>
+                        </div>
                     </div>
                 }
-
+                <br/>
                 <div>
                     <div className="text-center">
                         <h4>Collection Showcase</h4>
-                        <br/>
 
                         <div className="row ml-5 mr-5">
                             {
@@ -122,7 +131,8 @@ export class Home extends React.Component {
 }
 
 const stpm = (state) => ({
-    loggedIn: state.loggedIn
+    loggedIn: state.loggedIn,
+    profileData: state.profileData
 })
 
 export default connect(stpm)(Home);
