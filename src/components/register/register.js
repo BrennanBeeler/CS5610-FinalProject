@@ -29,10 +29,7 @@ const Register = ({signUp, loggedIn}) => {
                 username: username,
                 password: password,
                 premium: premium
-            }) === true) {
-                console.log("Signed up")
-            }
-            else {
+            }) !== true) {
                 alert("That username is already in use. Please try another!")
             }
         }

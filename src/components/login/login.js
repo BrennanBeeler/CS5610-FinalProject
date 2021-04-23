@@ -14,8 +14,6 @@ const Login = (
     const [username, setUsername] = useState("");
 
     async function validateCredentials () {
-        //TODO: validate log in credentials against database
-
         if (await logIn(username, password) === false) {
             alert("Those are invalid credentials, please try again")
         }
@@ -67,14 +65,6 @@ const Login = (
                 }
 
                 <div className="form-check">
-                    <div className="float-left">
-                        {/*TODO: determine how to do this*/}
-                        <input className="form-check-input " type="checkbox" value="" id="flexCheckDefault"/>
-                        <label className="form-check-label " htmlFor="flexCheckDefault">
-                            Remember me ?????????
-                        </label>
-                    </div>
-
                     <Link to="/register" className="float-right">
                         Don't have an account?
                     </Link>

@@ -9,13 +9,20 @@ const MyInfo = ({profileData, updateMyDetails}) => {
 	const [phoneNum, setPhoneNum] = useState(profileData.phoneNum);
 	const [premium, setPremium] = useState(profileData.premium);
 
-	//TODO: validate details before sending out
 	async function handleUpdate() {
-		if (await updateMyDetails(profileData, email, username, password, phoneNum, premium) === true) {
-			alert("Profile successfully updated!")
+		if (username === "") {
+			alert("Username cannot be empty!")
+		}
+		else if (password === "") {
+			alert("Please enter a password!")
 		}
 		else {
-			alert("Error updating profile. Please try again.")
+			if (await updateMyDetails(profileData, email, username, password, phoneNum, premium) === true) {
+				alert("Profile successfully updated!")
+			}
+			else {
+				alert("Error updating profile. Please try again.")
+			}
 		}
 	}
 
