@@ -1,9 +1,6 @@
 import React, {useEffect, useState} from "react";
-import DetailsPostDisplay from "../../../details/details-post-display";
 import PostService from "../../../../services/post-service";
 import {Accordion, Button, Card} from "react-bootstrap";
-import {Link} from "react-router-dom";
-import CollectionQuote from "../my-collections/collection-quote";
 import ProfileCollectionPost from "./profile-collection-post";
 import ProfileQuotePost from "./profile-quote-post";
 

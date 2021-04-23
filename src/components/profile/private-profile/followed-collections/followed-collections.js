@@ -43,8 +43,6 @@ const stpm = (state, ownProps) => ({
 const dtpm = (dispatch) => ({
 	unFollowCollection: (profileData, collectionId) =>
 		profileActions.unFollowCollection(dispatch, profileData, collectionId)(dispatch)
-
-
 })
 
 export default connect(stpm, dtpm)(FollowedCollections);

@@ -74,15 +74,11 @@ const MyCollections = ({getMyCollections, profileData, collectionOptions, delete
 							<Card>
 								<Card.Header>
 									<div className="row">
-										<div className="col-4">
+										<div className="col-9">
 											<Link to={`/details/collection/${collection.id}`}>
 												{/*TODO: make bigger*/}
 												{collection.collectionName}
 											</Link>
-										</div>
-
-										<div className="col-5">
-											Likes: {collection.likes}
 										</div>
 
 										<div className="col-3">
