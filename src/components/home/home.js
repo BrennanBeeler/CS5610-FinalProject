@@ -1,7 +1,5 @@
 import React from "react"
 import {connect} from "react-redux";
-import CategoryCard from "../card/category-card";
-import CollectionIcon from "../collection-icon/collection-icon";
 import ExternalQuoteService from "../../services/external-quotes-service"
 import "./home.css";
 import {Card} from "react-bootstrap";

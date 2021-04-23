@@ -1,5 +1,4 @@
 import React from "react";
-import CreatorIcon from "../../collection-icon/collection-icon";
 
 const PublicCollections = () => {
 	return (

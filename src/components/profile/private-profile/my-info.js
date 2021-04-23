@@ -21,27 +21,6 @@ const MyInfo = ({profileData, updateMyDetails}) => {
 
 	return (
 		<div>
-			<div className="row">
-				<div className="col-3"/>
-
-				{/*TODO: set up profile pictures - only for premium user?*/}
-				<div className="col-3">
-					Change Profile Picture
-					<img src="https://via.placeholder.com/150" alt="placeholder" className="wbdv-circle"/>
-
-				</div>
-
-				<div>
-					<br/>
-					<br/>
-					<br/>
-					<input type="file" className="form-control-file" id="exampleFormControlFile1"/>
-				</div>
-				<br/>
-
-
-			</div>
-
 			<div className="mt-3">
 				<div className="form-group">
 					<label className="form-check-label" htmlFor="UsernameInput">Username</label>

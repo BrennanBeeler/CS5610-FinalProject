@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import MyInfo from "./my-info";
-import FollowedCreators from "./followed-creators";
+import FollowedCollections from "./followed-collections/followed-collections";
 import MyCollections from "./my-collections/my-collections";
 import MyBio from "./my-bio";
 import {connect} from "react-redux";
@@ -27,15 +27,23 @@ const PrivateProfile = ({profileData, loggedIn, logOut, deleteAccount}) => {
                     </a>
                 </li>
                 <li className="nav-item">
-                    <a className={`nav-link ${active === "MyCreators" ? "active" : ""}`}
-                       onClick={() => setActive("MyCreators")}>
-                        Creators/Collections? You Follow
-                    </a>
-                </li>
-                <li className="nav-item">
                     <a className={`nav-link ${active === "MyBio" ? "active" : ""}`}
                        onClick={() => setActive("MyBio")}>
                         My Bio
+                    </a>
+                </li>
+                {
+                    <li className="nav-item">
+                        <a className={`nav-link ${active === "MyPosts" ? "active" : ""}`}
+                           onClick={() => setActive("MyPosts")}>
+                            My Posts
+                        </a>
+                    </li>
+                }
+                <li className="nav-item">
+                    <a className={`nav-link ${active === "FollowedCollections" ? "active" : ""}`}
+                       onClick={() => setActive("FollowedCollections")}>
+                        My Followed Collections
                     </a>
                 </li>
                 {
@@ -47,14 +55,7 @@ const PrivateProfile = ({profileData, loggedIn, logOut, deleteAccount}) => {
                         </a>
                     </li>
                 }
-                {
-                    <li className="nav-item">
-                        <a className={`nav-link ${active === "MyPosts" ? "active" : ""}`}
-                           onClick={() => setActive("MyPosts")}>
-                            My Posts
-                        </a>
-                    </li>
-                }
+
                 <li className="nav-item">
                     <a className={`nav-link ${active === "Account Settings" ? "active" : ""}`}
                        onClick={() => setActive("Account Settings")}>
@@ -67,7 +68,7 @@ const PrivateProfile = ({profileData, loggedIn, logOut, deleteAccount}) => {
             <div>
 
                 {active === "MyInfo" && <MyInfo profileData={profileData}/>}
-                {active === "MyCreators" && <FollowedCreators/>}
+                {active === "FollowedCollections" && <FollowedCollections followedCollections={profileData.followedCollections}/>}
                 {active === "MyCollections" && <MyCollections key={new Date().getTime()}/>}
                 {active === "MyBio" && <MyBio profileData={profileData}/>}
                 {active === "MyPosts" && <MyPosts profileData={profileData}/>}
