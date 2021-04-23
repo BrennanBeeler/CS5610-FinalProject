@@ -15,3 +15,6 @@
     font-weight: bolder;
 }
 
+.wbdv-text-nowrap {
+    text-wrap: none;
+}

@@ -14,16 +14,16 @@ const TopBar = ({loggedIn, profileData}) => {
                 </Link>
             </div>
 
-            <div className="col-8">
+            <div className="col-lg-6 col-xl-8 col-2">
                 <Link to={"/search"} className="wbdv-search-text">
                     Search
                 </Link>
             </div>
 
-            <div className="col-2s">
+            <div className="col-auto">
                 {
                     loggedIn &&
-                    <Link to="/profile" className="btn btn-info">
+                    <Link to="/profile" className="btn btn-info text-nowrap">
                         {profileData.username}
                     </Link>
                 }
@@ -31,15 +31,14 @@ const TopBar = ({loggedIn, profileData}) => {
                 {
                     !loggedIn &&
                     <>
-                        <Link to="/login" className="btn btn-primary">
+                        <Link to="/login" className="btn btn-primary text-nowrap">
                             Log In
                         </Link>
                     </>
                 }
-
                 {
                     !loggedIn &&
-                    <Link to={"/register"} className="btn btn-secondary">
+                    <Link to={"/register"} className="btn btn-secondary text-nowrap">
                         Sign Up
                     </Link>
                 }
