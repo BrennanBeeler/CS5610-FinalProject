@@ -28,7 +28,8 @@ const Register = ({signUp, loggedIn}) => {
             if (await signUp({
                 username: username,
                 password: password,
-                premium: premium
+                premium: premium,
+                followedCollections: []
             }) !== true) {
                 alert("That username is already in use. Please try another!")
             }

@@ -120,7 +120,7 @@ const PublicProfile = ({userId}) => {
 											profileData.followedCollections !== undefined && (
 												profileData.followedCollections.length === 0 ?
 													<div>
-														{profileData.username} hasn't made any collections yet
+														{profileData.username} isn't following any collections
 													</div>
 													:
 													(

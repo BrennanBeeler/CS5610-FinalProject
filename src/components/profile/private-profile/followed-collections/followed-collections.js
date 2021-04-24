@@ -16,20 +16,29 @@ const FollowedCollections = ({followedCollections, profileData, unFollowCollecti
 	return (
 		<div>
 			{
-				localFollowedCollections.length === 0 &&
+				localFollowedCollections !== null ?
+					<>
+						{
+							localFollowedCollections.length === 0 &&
+							<div>
+								You aren't following any collections right now... Try the search feature or the collection
+								spotlight and follow some!
+							</div>
+						}
+						{
+							localFollowedCollections.map(collectionId =>
+								<>
+									<FollowedCollectionDisplay collectionId={collectionId} handleUnfollow={handleUnfollow}/>
+									<br/>
+								</>
+							)
+						}
+					</>
+					:
 					<div>
 						You aren't following any collections right now... Try the search feature or the collection
 						spotlight and follow some!
 					</div>
-			}
-
-			{
-				localFollowedCollections.map(collectionId =>
-					<>
-						<FollowedCollectionDisplay collectionId={collectionId} handleUnfollow={handleUnfollow}/>
-						<br/>
-					</>
-				)
 			}
 		</div>
 	)
