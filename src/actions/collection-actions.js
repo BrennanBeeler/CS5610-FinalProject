@@ -17,7 +17,6 @@ const getMyCollections = (dispatch, userId) =>
 
 
 const getFollowedCollections = (dispatch, userId) => {
-    //TODO: we need to get possible collections from db here
     dispatch({
         type: GET_FOLLOWED_COLLECTIONS,
         userId
@@ -25,8 +24,6 @@ const getFollowedCollections = (dispatch, userId) => {
 }
 
 const addQuoteToCollection = (dispatch, collection, quoteId) => {
-
-    //TODO: need promise to alert user of success?
     CollectionService.UpdateCollection({
         ...collection,
         quoteIds: [
@@ -38,17 +35,13 @@ const addQuoteToCollection = (dispatch, collection, quoteId) => {
     )
 }
 
-const removeQuoteFromCollection = (dispatch, collection, quoteId) => {
-    console.log(collection, quoteId)
+const removeQuoteFromCollection = (dispatch, collection, quoteId) => async (dispatch) => {
 
-    //TODO: need result?
-    CollectionService.UpdateCollection({
-        ...collection,
-        quoteIds: collection.quoteIds.filter(qid => qid !== quoteId)
-    })
-        .then(response => {
-            console.log(response)
+    const res = await CollectionService.UpdateCollection({...collection,
+            quoteIds: collection.quoteIds.filter(qid => qid !== quoteId)
         })
+
+    return res === 1;
 }
 
 const createCollectionForUser = (dispatch, userId, collection) =>

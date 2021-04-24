@@ -36,6 +36,10 @@ export class Home extends React.Component {
     }
 
     getRandomCollections = (array) => {
+        if (array === null) {
+            return []
+        }
+
         const length = array.length
 
         if (length <= 3) {
@@ -109,7 +113,7 @@ export class Home extends React.Component {
                     <div className="text-center">
                         <h4>Collection Showcase</h4>
 
-                        <div className="row ml-5 mr-5">
+                        <div className="row ml-5 mr-5 justify-content-center">
                             {
                                 this.getRandomCollections(this.state.randomCollections).map(collection =>
                                     <Card className="col-4">

@@ -45,6 +45,10 @@ const AddQuoteToCollection = (
                                       onChange={event => setCollectionChoice(parseInt(event.target.value))}>
                             <option value={0}>Select a Collection</option>
                             {
+                                console.log(collectionOptions)
+                            }
+
+                            {
                                 collectionOptions.map(collection =>
                                     <option key={collection.collectionId} value={collection.id}>
                                         {collection.collectionName}

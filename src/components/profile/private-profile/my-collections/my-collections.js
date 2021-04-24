@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import CollectionQuote from "./collection-quote";
 import CreateCollectionModal from "./create-collection-modal";
 
-const MyCollections = ({getMyCollections, profileData, collectionOptions, deleteCollection, createCollectionForUser}) => {
+const MyCollections = ({getMyCollections, profileData, collectionOptions, deleteCollection, createCollectionForUser, removeQuoteFromCollection}) => {
 
 	const [showModal, setShowModal] = useState(false)
 
@@ -29,6 +29,24 @@ const MyCollections = ({getMyCollections, profileData, collectionOptions, delete
 					alert("Collection name already in use! Please try another.")
 				}
 			})
+	}
+
+	async function handleQuoteRemoval (collection, quoteId) {
+		if (await removeQuoteFromCollection(collection, quoteId)) {
+			setLocalCollectionOptions(
+				localCollectionOptions.map(option => {
+					if (collection.id === option.id) {
+						return {...option, quoteIds: option.quoteIds.filter(id => id !== quoteId)}
+					}
+					else {
+						return option
+					}
+				})
+			)
+		}
+		else {
+			alert("Problem encountered when removing quote")
+		}
 	}
 
 	const handleDeleteCollection = (collection) => {
@@ -103,7 +121,7 @@ const MyCollections = ({getMyCollections, profileData, collectionOptions, delete
 										{
 											collection.quoteIds.map(quoteId =>
 												<div>
-													<CollectionQuote collection={collection} quoteId={quoteId}/>
+													<CollectionQuote collection={collection} quoteId={quoteId} handleQuoteRemoval={handleQuoteRemoval}/>
 													<br/>
 												</div>
 											)
@@ -135,7 +153,9 @@ const dtpm = (dispatch) => ({
 	getMyCollections: (userId) => collectionActions.getMyCollections(dispatch, userId),
 	deleteCollection: (collectionId) => collectionActions.deleteCollection(dispatch, collectionId),
 	createCollectionForUser : (userId, collection) =>
-		collectionActions.createCollectionForUser(dispatch, userId, collection)
+		collectionActions.createCollectionForUser(dispatch, userId, collection),
+	removeQuoteFromCollection: (collection, quoteId) =>
+			collectionActions.removeQuoteFromCollection(dispatch, collection, quoteId)(dispatch)
 })
 
 export default connect(stpm, dtpm)(MyCollections);

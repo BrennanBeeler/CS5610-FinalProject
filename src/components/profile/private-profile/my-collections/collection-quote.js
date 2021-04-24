@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {Card, Col} from "react-bootstrap";
-import collectionActions from "../../../../actions/collection-actions";
 import {connect} from "react-redux";
 import quotesService from "../../../../services/external-quotes-service";
 import {Link} from "react-router-dom";
 
-const CollectionQuote = ({quoteId, collection, removeQuoteFromCollection}) => {
+const CollectionQuote = ({quoteId, collection, handleQuoteRemoval}) => {
 
     const [quote, setQuote] = useState({});
 
@@ -36,7 +35,7 @@ const CollectionQuote = ({quoteId, collection, removeQuoteFromCollection}) => {
                         </div>
                         <div className="col-4">
                             <button className="btn btn-outline-danger float-right"
-                                    onClick={() => removeQuoteFromCollection(collection, quoteId)}>
+                                    onClick={() => handleQuoteRemoval(collection, quoteId)}>
                                 Remove quote
                             </button>
                         </div>
@@ -54,9 +53,4 @@ const stpm = (state, ownProps) => ({
     collectionId: ownProps.collectionId
 })
 
-const dtpm = (dispatch) => ({
-    removeQuoteFromCollection: (collection, quoteId) =>
-        collectionActions.removeQuoteFromCollection(dispatch, collection, quoteId)
-})
-
-export default connect(stpm, dtpm)(CollectionQuote);
+export default connect(stpm)(CollectionQuote);

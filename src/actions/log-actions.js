@@ -7,7 +7,7 @@ export const LOG_OUT = "LOG_OUT";
 const logIn = (dispatch, username, password) => async (dispatch) => {
     const res = await UserService.LogInUser(username, password)
 
-    if(Object.entries(res).length > 0) {
+    if(Object.entries(res).length > 0 && res.id !== 0) {
         dispatch({
             type : LOG_IN,
             profileData: res
