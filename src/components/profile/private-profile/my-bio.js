@@ -5,7 +5,6 @@ import {connect} from "react-redux";
 const MyBio = ({profileData, updateBio}) => {
 	const [bio, setBio] = useState(profileData.bio)
 
-	//TODO: validate bio information? max length?
 	async function handleUpdate() {
 		if (await updateBio(profileData, bio) === true) {
 			alert("Bio successfully updated!")

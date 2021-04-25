@@ -13,7 +13,6 @@ const MyPosts = ({profileData}) => {
         //THIS GETS POSTS FOR COLLECTIONS
         PostService.GetCollectionPostsForUser(profileData.id)
             .then(response => {
-                //TODO: validate
                 if (response !== "BAD") {
                     setCollectionPosts(response)
                 }
@@ -21,7 +20,6 @@ const MyPosts = ({profileData}) => {
 
         PostService.GetQuotePostsForUser(profileData.id)
             .then(response => {
-                //TODO: validate
                 if (response !== "BAD") {
                     setQuotePosts(response)
                 }

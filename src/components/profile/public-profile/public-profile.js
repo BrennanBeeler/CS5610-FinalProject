@@ -19,14 +19,12 @@ const PublicProfile = ({userId}) => {
 		})
 		PostService.GetCollectionPostsForUser(userId)
 			.then(response => {
-				//TODO: validate
 				if (response !== "BAD") {
 					setCollectionPosts(response)
 				}
 			})
 		PostService.GetQuotePostsForUser(userId)
 			.then(response => {
-				//TODO: validate
 				if (response !== "BAD") {
 					setQuotePosts(response)
 				}

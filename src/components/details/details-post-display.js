@@ -9,7 +9,6 @@ const DetailsPostDisplay = ({post}) => {
 
     useEffect(() => {
         UserService.GetUser(post.userId).then(response => {
-            //TODO: validate
             if (response !== "BAD") {
                 setUser(response)
             }

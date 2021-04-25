@@ -5,7 +5,6 @@ export const UPDATE_BIO = "UPDATE_BIO";
 export const FOLLOW_COLLECTION = "FOLLOW_COLLECTION";
 
 const updateMyDetails = (dispatch, profileData, email, username, password, phoneNum, premium) => async (dispatch) => {
-    //TODO: add phone num
 
     const res = await UserService.UpdateUser({
         ...profileData,

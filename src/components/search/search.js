@@ -19,7 +19,6 @@ const Search = () => {
             <label htmlFor="searchBar">
                 <h1>Search QOTD</h1>
             </label>
-            {/*TODO: figure out what is searchable*/}
             <div class="wrapper">
                 <img
                     className="search-icon"

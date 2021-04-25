@@ -1,7 +1,6 @@
 const QUOTES_URL = 'http://quotes.rest/';
 const API_KEY = "55F_r0Emfg9tbCTqWmzjCgeF";
 
-//TODO: if have time can switch to all categories
 const getQuoteOfDay = () =>
     fetch(`${QUOTES_URL}qod.json?api_key=${API_KEY}`)
         .then(response => response.json())
@@ -17,7 +16,6 @@ const searchByAuthor = (author) =>
             }
         })
 
-//TODO: implement
 const searchByQuoteId = (quoteId) =>
     fetch(`${QUOTES_URL}quote.json?id=${quoteId}&limit=1&api_key=${API_KEY}`)
         .then((response) => {

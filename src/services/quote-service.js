@@ -16,7 +16,6 @@ const CreateQuote = (quote) =>
         .then(response => response.json())
 
 
-//TODO: When would we delete quote?
 const DeleteQuote = (quote) =>
     fetch(`${QUOTE_URL}/${quote.id}`, {
         method: "DELETE"
@@ -24,7 +23,6 @@ const DeleteQuote = (quote) =>
         .then(response => response.json())
 
 
-//TODO: not sure if we need this at all?
 const UpdateQuote = (quote) =>
     fetch(`${QUOTE_URL}/${quote.id}`, {
         method: "POST",

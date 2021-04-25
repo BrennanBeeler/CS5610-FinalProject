@@ -90,7 +90,6 @@ const stpm = (state) => ({
 })
 
 const dtpm = (dispatch) => ({
-	//TODO: add phone number
 	updateMyDetails: (profileData, email, username, password, phoneNum, premium) =>
 		profileActions.updateMyDetails(dispatch, profileData, email, username, password, phoneNum, premium)(dispatch)
 })

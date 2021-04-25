@@ -11,7 +11,6 @@ import TopBar from "./components/top-bar/top-bar";
 import Register from "./components/register/register";
 import SearchResults from "./components/search-results/search-results";
 
-//TODO figure out if app is okay as class
 function App() {
     return (
         <Provider store={store}>
@@ -51,7 +50,6 @@ function App() {
                         <SearchResults/>
                     </Route>
 
-                    {/*TODO determine if we want a privacy policy page*/}
                 </div>
             </BrowserRouter>
         </Provider>

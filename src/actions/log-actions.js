@@ -20,7 +20,6 @@ const logIn = (dispatch, username, password) => async (dispatch) => {
 }
 
 const logOut = (dispatch) => {
-    //TODO: kill session data on logout
     dispatch({
         type : LOG_OUT
     })

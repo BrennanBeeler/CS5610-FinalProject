@@ -79,7 +79,6 @@ const stpm = (state) => ({
 })
 
 const dtpm = (dispatch) => ({
-//    TODO: need to turn into actual login procedure
     logIn: (username, password) => logActions.logIn(dispatch, username, password)(dispatch)
 })
 

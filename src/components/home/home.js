@@ -66,7 +66,6 @@ export class Home extends React.Component {
                 <h1 className="text-center">Quote of the Day</h1>
 
                 <div id="quote-div">
-                    {/*TODO: ask prof how to get into css file*/}
                     <blockquote
                         className="text-center blockquote"
                         style={{

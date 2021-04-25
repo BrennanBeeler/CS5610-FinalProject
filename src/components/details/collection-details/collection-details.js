@@ -25,7 +25,6 @@ const CollectionDetails = ({loggedIn, profileData, followCollection, unFollowCol
             contentId: collectionId
         }, collectionId)
             .then(response => {
-                //TODO: validate
                 if(response !== "BAD") {
                     setPosts([...posts, response])
                     setComment("")

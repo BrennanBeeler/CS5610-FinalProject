@@ -23,8 +23,6 @@ const applicationReducer = (state = initialState, action) => {
                 profileData: action.profileData
             }
         case UPDATE_MY_DETAILS:
-            //TODO: add phone number
-            //TODO: figure out why tab does not disappear on losing premium status
             return {
                 ...state,
                 profileData: {
@@ -32,7 +30,8 @@ const applicationReducer = (state = initialState, action) => {
                     email: action.email,
                     username: action.username,
                     password: action.password,
-                    premium: action.premium
+                    premium: action.premium,
+                    phoneNum: action.phoneNum
                 }
             }
         case UPDATE_BIO:

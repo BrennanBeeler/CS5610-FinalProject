@@ -20,7 +20,6 @@ const Register = ({ signUp, loggedIn }) => {
         } else if (password !== confirmPassword) {
             alert("Your passwords don't match. Please confirm them both");
         }
-        //TODO: further validation of all password/username
         else {
             if (
                 (await signUp({
@@ -146,7 +145,6 @@ const stpm = (state) => ({
 });
 
 const dtpm = (dispatch) => ({
-    //    TODO: need to turn into actual login procedure
     signUp: (user) => logActions.signUp(dispatch, user)(dispatch),
 });
 

@@ -94,7 +94,6 @@ const MyCollections = ({getMyCollections, profileData, collectionOptions, delete
 									<div className="row">
 										<div className="col-9">
 											<Link to={`/details/collection/${collection.id}`}>
-												{/*TODO: make bigger*/}
 												{collection.collectionName}
 											</Link>
 										</div>
@@ -117,7 +116,6 @@ const MyCollections = ({getMyCollections, profileData, collectionOptions, delete
 											</div>
 										}
 
-										{/*TODO: allow editing of quotes*/}
 										{
 											collection.quoteIds.map(quoteId =>
 												<div>

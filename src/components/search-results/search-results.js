@@ -71,7 +71,6 @@ const SearchResults = () => {
 
             <h3>Collections</h3>
 
-            {/*TODO: populate these appropriately and make them dynamically spaced- always 6*/}
             <ul>
                 {collectionResults.map((result) => (
                     <CollectionResult result={result} />

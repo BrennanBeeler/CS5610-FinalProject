@@ -23,7 +23,6 @@ const QuoteDetails = ({profileData, loggedIn}) => {
             contentId: quoteId
         }, quoteId)
             .then(response => {
-                //TODO: validate
                 if(response !== "BAD") {
                     setPosts([...posts, response])
                     setComment("")

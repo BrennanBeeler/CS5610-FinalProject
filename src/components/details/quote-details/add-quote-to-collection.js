@@ -81,7 +81,6 @@ const stpm = (state, ownProps) => ({
 })
 
 const dtpm = (dispatch) => ({
-    //TODO: when do we get the possible collections?
     getMyCollections: (userId) => collectionActions.getMyCollections(dispatch, userId),
     addQuoteToCollection : (collection, quoteId) =>
         collectionActions.addQuoteToCollection(dispatch, collection, quoteId)
