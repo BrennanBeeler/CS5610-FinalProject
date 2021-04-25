@@ -1,0 +1,22 @@
+.wrapper {
+	position: relative;
+	display: flex;
+	min-width: 100px;
+}
+
+.search-icon {
+	position: absolute;
+	top: 13px;
+	left: 8px;
+	width: 14px;
+}
+
+#searchBar {
+	border: 1px solid grey;
+	border-radius: 5px;
+	height: 40px;
+	width: 100%;
+	padding: 2px 23px 2px 30px;
+	outline: 0;
+	background-color: #f5f5f5;
+}
