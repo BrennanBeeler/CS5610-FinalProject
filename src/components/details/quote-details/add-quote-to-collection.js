@@ -44,9 +44,6 @@ const AddQuoteToCollection = (
                         <Form.Control as="select" value={collectionChoice}
                                       onChange={event => setCollectionChoice(parseInt(event.target.value))}>
                             <option value={0}>Select a Collection</option>
-                            {
-                                console.log(collectionOptions)
-                            }
 
                             {
                                 collectionOptions.map(collection =>

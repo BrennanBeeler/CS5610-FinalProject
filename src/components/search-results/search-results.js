@@ -39,11 +39,11 @@ const SearchResults = () => {
 
             <h1 className="row border-bottom">Results for: {searchTerm}</h1>
 
-            {console.log(collectionResults)}
-
             <h3>Quotes</h3>
 
-            {authorResults.length !== 0 && <h5>By Author:</h5>}
+            <h5>By Author:</h5>
+
+            {authorResults.length === 0 && <div> No results by author </div>}
 
             <ul>
                 {authorResults.map((result) => (
@@ -51,7 +51,10 @@ const SearchResults = () => {
                 ))}
             </ul>
 
-            {keywordResults !== [] && <h5>By Keyword:</h5>}
+            <h5>By Keyword:</h5>
+
+            {keywordResults.length === 0 && <div> No results by keyword </div>}
+
 
             <ul>
                 {keywordResults.map((result) => (
@@ -59,7 +62,9 @@ const SearchResults = () => {
                 ))}
             </ul>
 
-            {categoryResults !== [] && <h5>By Category:</h5>}
+            <h5>By Category:</h5>
+
+            {categoryResults.length === 0 && <div> No results by category </div>}
 
             <ul>
                 {categoryResults.map((result) => (
@@ -69,7 +74,10 @@ const SearchResults = () => {
 
             <br />
 
+
             <h3>Collections</h3>
+
+            {collectionResults.length === 0 && <div> No collection results </div>}
 
             <ul>
                 {collectionResults.map((result) => (

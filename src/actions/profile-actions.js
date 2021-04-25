@@ -55,8 +55,6 @@ const followCollection = (dispatch, profileData, collectionId) => async (dispatc
 
 const unFollowCollection = (dispatch, profileData, collectionId) => async (dispatch) => {
 
-    console.log("here")
-
     const res = await UserService.UpdateUser({
         ...profileData,
         followedCollections: profileData.followedCollections.filter(collection => collection !== collectionId)

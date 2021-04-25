@@ -3,8 +3,6 @@ import {Card} from "react-bootstrap";
 import {Link} from "react-router-dom";
 
 const ProfileQuotePost = ({post}) => {
-    console.log(post)
-
     return(
         <div className="mb-2">
             <Card>
