@@ -50,6 +50,12 @@ const PublicProfile = ({userId}) => {
 
 						<br/>
 
+						<div>
+							{profileData.bio}
+						</div>
+
+						<br/>
+
 						<Accordion>
 							<Card>
 								<Card.Header>
