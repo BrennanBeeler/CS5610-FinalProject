@@ -56,7 +56,7 @@ const QuoteDetails = ({profileData, loggedIn}) => {
                 </h1>
 
                 {
-                    loggedIn &&
+                    (loggedIn && profileData.premium) &&
                     <button className="btn btn-primary" onClick={() => setShowModal(true)}>
                         Add to Collection
                     </button>
