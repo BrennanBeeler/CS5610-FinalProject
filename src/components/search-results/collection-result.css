@@ -1,0 +1,26 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic);
+
+#collectionBlock {
+  font-size: 1.4em;
+  width: 100%;
+  margin: 25px auto;
+  font-family: Open Sans;
+  font-style: normal;
+  color: #555555;
+  padding: 1.2em 30px 1.2em 75px;
+  border-top: 1px solid #808080;
+  border-right: 1px solid #808080;
+  border-bottom: 1px solid #808080;
+  border-left: 8px solid #99b9bf;
+  line-height: 1.6;
+  position: relative;
+  background: #ededed;
+}
+
+#collectionBlock::before {
+  content: "";
+}
+
+#collectionBlock::after {
+  content: "";
+}
