@@ -43,7 +43,6 @@ const SearchResults = () => {
 
             <h3>Quotes</h3>
 
-            {/*TODO: figure out why this isn't working*/}
             {authorResults.length !== 0 && <h5>By Author:</h5>}
 
             <ul>
