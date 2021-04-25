@@ -14,7 +14,7 @@ const TopBar = ({ loggedIn, profileData }) => {
 
             <div className="col-lg-6 col-xl-8 col-2">
                 <Link to={"/search"} className="wbdv-search-text">
-                    <h4>Search<
+                    <h4>Search</h4>
                 </Link>
             </div>
 
