@@ -48,6 +48,9 @@ const MyPosts = ({profileData}) => {
                                                 if (post.collectionId !== null) {
                                                     return <ProfileCollectionPost post={post}/>
                                                 }
+                                                else{
+                                                    return <></>
+                                                }
                                             })
                                         }
                                     </div>
@@ -82,6 +85,9 @@ const MyPosts = ({profileData}) => {
                                             quotePosts.map(post => {
                                                 if (post.quoteId !== null) {
                                                     return <ProfileQuotePost post={post}/>
+                                                }
+                                                else{
+                                                    return <></>
                                                 }
                                             })
                                         }

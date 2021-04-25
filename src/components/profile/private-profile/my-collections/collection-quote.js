@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Card, Col} from "react-bootstrap";
+import {Card} from "react-bootstrap";
 import {connect} from "react-redux";
 import quotesService from "../../../../services/external-quotes-service";
 import {Link} from "react-router-dom";

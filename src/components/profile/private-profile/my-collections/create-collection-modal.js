@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {connect} from "react-redux";
-import {Modal, Button, Form} from "react-bootstrap";
+import {Modal, Button} from "react-bootstrap";
 import collectionActions from "../../../../actions/collection-actions";
 
 const CreateCollectionModal = (

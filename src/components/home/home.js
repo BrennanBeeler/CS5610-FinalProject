@@ -114,7 +114,7 @@ export class Home extends React.Component {
                             {this.getRandomCollections(
                                 this.state.randomCollections
                             ).map((collection) => (
-                                <Card className="col-4">
+                                <Card className="col-4" key={collection.id}>
                                     <Card.Body>
                                         <Link
                                             to={`/details/collection/${collection.id}`}

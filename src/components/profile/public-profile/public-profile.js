@@ -158,6 +158,9 @@ const PublicProfile = ({userId}) => {
 															if (post.collectionId !== null) {
 																return <ProfileCollectionPost post={post}/>
 															}
+															else{
+																return <></>
+															}
 														})
 													}
 												</div>
@@ -192,6 +195,9 @@ const PublicProfile = ({userId}) => {
 														quotePosts.map(post => {
 															if (post.quoteId !== null) {
 																return <ProfileQuotePost post={post}/>
+															}
+															else {
+																return <></>
 															}
 														})
 													}
